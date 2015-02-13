@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="numberlearning" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="88048040-1b8f-4980-be52-e59ec14ee7ea">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="childName" class="java.lang.String"/>
+	<parameter name="date" class="java.lang.String"/>
+	<parameter name="time" class="java.lang.String"/>
+	<parameter name="marks" class="java.lang.String"/>
+	<parameter name="message" class="java.lang.String"/>
+	<parameter name="headerimagepath" class="java.lang.String"/>
+	<field name="COLUMN_0" class="java.lang.String"/>
+	<field name="COLUMN_1" class="java.lang.String"/>
+	<variable name="childName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<textField>
+				<reportElement x="66" y="34" width="430" height="48" uuid="d6da844a-e913-4ee0-aec6-03393a9152a0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Cambria" size="32"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{childName} + "'s Number Learning Report"]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="-20" y="-20" width="596" height="45" uuid="acd7235e-5587-4775-ac92-f33ad19ac4f3"/>
+				<imageExpression><![CDATA[$P{headerimagepath}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="84" splitType="Stretch">
+			<textField>
+				<reportElement x="22" y="0" width="100" height="20" uuid="835e4c86-89ff-4835-94d5-fd6f12113080"/>
+				<textElement>
+					<font fontName="Cambria" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Date : " + $P{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="0" width="100" height="20" uuid="ac4c892f-899a-4058-95fe-472f455bae99"/>
+				<textElement>
+					<font fontName="Cambria" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Time : " + $P{time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="32" width="137" height="20" uuid="f345609e-5357-480d-8559-12153d3fa234"/>
+				<textElement>
+					<font fontName="Cambria" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Marks : " + $P{marks} + "/10"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="59" y="64" width="100" height="20" uuid="efe0797a-ec54-476e-84dd-71a878860fb0"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="64" width="100" height="20" uuid="43c0b83b-c87d-4e3c-b68b-432a36d0dbb1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Result]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="59" y="9" width="100" height="20" uuid="9b4c961d-48ce-46a3-943d-7763b7aed250"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_0}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="9" width="100" height="20" uuid="ed89b173-c69e-4168-b4a1-f5f5d863449f"/>
+				<textFieldExpression><![CDATA[$F{COLUMN_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="22" y="9" width="451" height="20" uuid="9b7efaa6-d3d1-4db9-8aa1-64de4b2cb838"/>
+				<textElement>
+					<font fontName="Cambria" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Message from "  + $P{childName} +" : " + $P{message}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="183" y="0" width="192" height="34" uuid="dcadd721-0ce1-4550-9777-dbbd0c6d5265"/>
+				<textElement textAlignment="Center">
+					<font fontName="Cambria" size="28" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Good Bye!]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="46" width="100" height="20" uuid="6b117d44-e931-4420-a109-3e5bed26f1dd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,14 @@
+build/
+dist/
+lib/
+log/
+nbproject/
+resources/
+tessdata/
+manifest.mf
+build.xml
+scheduler.txt
+test.txt
+userdetails.txt
+src/smartfriend/resources/images/
+src/smartfriend/resources/speech/

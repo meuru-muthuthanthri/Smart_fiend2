@@ -83,7 +83,7 @@ public class MainFlow implements Runnable {
             screenImage = systemController.getSkewedScreenShot();
 
             //graphicRenderer.drawImageOnInfoPanel(screenImage, 1);
-            handpointer = handDetector.getHandPoint(camera.capturePhoto(), screenImage);
+            handpointer = handDetector.getHandPoint(camera.captureSmallPhoto(), screenImage);
             graphicRenderer.drawPointerOnScreen(handpointer);
             systemController.moveMousePointer(handpointer);
             if (handpointer.getState()) {

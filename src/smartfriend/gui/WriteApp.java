@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.opencv.core.Point;
 import smartfriend.GraphicRenderer;
+import smartfriend.games.Board;
 import smartfriend.speechRecognition.SpeechRecognizer;
 import smartfriend.util.general.Colors;
 import smartfriend.util.general.Consts;
@@ -37,6 +38,10 @@ public class WriteApp extends JPanel implements MouseMotionListener{
     private Button backButton;
     
     public WriteApp() {
+        Board board = new Board();
+        board.setBounds(0, 150, 300, 400);
+        board.setVisible(true);
+        add(board);
         pointList = new ArrayList<>();
         setSize(Consts.SCREEN_WIDHT, Consts.SCREEN_HEIGHT);
         setOpaque(true);
@@ -48,7 +53,7 @@ public class WriteApp extends JPanel implements MouseMotionListener{
         final Font font = new Font("Araial", Font.BOLD, 350);
         welcomeText.setFont(font);
         welcomeText.setForeground(Color.WHITE);
-        add(welcomeText);
+        //add(welcomeText);
         welcomeText.setBounds((Consts.SCREEN_WIDHT - welcomeText.getPreferredSize().width) / 2, 150, welcomeText.getPreferredSize().width, welcomeText.getPreferredSize().height);
 
         addMouseMotionListener(this);

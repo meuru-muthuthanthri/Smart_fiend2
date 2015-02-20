@@ -82,18 +82,19 @@ public class MainScreen extends JPanel implements Runnable {
             }
         });
         add(interactiveBookButton);
-        
+
         schedularButton = new Button("Book Read", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 200, 200, Consts.SCEDULAR_ICON);
         schedularButton.setBounds(500, 100, schedularButton.getPreferredSize().width, schedularButton.getPreferredSize().height);
         schedularButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("You are using book read application");
+                if (Consts.TALK) {
+                    VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("You are using book read application");
+                }
                 graphicRenderer.showScreen(Consts.MAIN_SCREEN, Consts.SCHEDULER);
             }
         });
 //        add(schedularButton);
-        
 
     }
 

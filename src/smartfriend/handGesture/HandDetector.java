@@ -27,6 +27,7 @@ import org.opencv.core.MatOfInt4;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.Point;
+import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
 import smartfriend.GraphicRenderer;
@@ -49,7 +50,7 @@ public class HandDetector {
     private static final int MAX_THUMB = 200;
     private static final int MIN_INDEX = 60;
     private static final int MAX_INDEX = 120;
-    private static final int FINGER_WIDTH = 10;
+    private static final int FINGER_WIDTH = 30;
     private GraphicRenderer graphicRenderer;
     private DisplayEngine displayEngine;
     private Mat initialImage;
@@ -93,6 +94,10 @@ public class HandDetector {
         handConvexHull = new ArrayList<>();
         fingerTips = new ArrayList<>();
         namedFingers = new ArrayList<>();
+        
+        if (Consts.GRAPHICAL_DEBUG) {
+            graphicRenderer.drawImageOnInfoPanel(image, 960, 240, 2);
+        }
 
         //resize image to speedup
         Core.absdiff(image, initialImage, image);
@@ -114,9 +119,8 @@ public class HandDetector {
         if (Consts.GRAPHICAL_DEBUG) {
             graphicRenderer.drawImageOnInfoPanel(image, 960, 0, 2);
         }
-
+        
         Imgproc.findContours(image, contours, new Mat(), Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
-
         if (contours.size() > 0) {
             transformedBiggestContour = getBiggestContourMatOfPoint(contours);
             if (transformedBiggestContour != null & transformedBiggestContour.height() > 3) {

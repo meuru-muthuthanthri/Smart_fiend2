@@ -36,7 +36,7 @@ public class DisplayEngine {
         this.displaySize = displaySize;
         this.camera = camera;
         while (true) {
-            initialImage = camera.capturePhoto();
+            initialImage = camera.captureSmallPhoto();
             boundryPoints = findBoundaries(initialImage.clone());
             if (boundryPoints.size() > 0) {
                 boundryPoints = sortPoints(boundryPoints);
@@ -44,12 +44,12 @@ public class DisplayEngine {
                     System.out.println(" x : " + pt.x + "   " + pt.y);
                 }
                 if (Consts.GRAPHICAL_DEBUG) {
-                    graphicRenderer.drawPointsOnInfoPanel(camera.capturePhoto(), boundryPoints, Color.GREEN, 0, 0, 2);
+                    graphicRenderer.drawPointsOnInfoPanel(camera.captureSmallPhoto(), boundryPoints, Color.GREEN, 0, 0, 2);
                 }
                 PointTransform.initialize(boundryPoints, displaySize);
                 break;
             }
-//            System.out.println("unsucessfull" + boundryPoints.size());
+            System.out.println("unsucessfull" + boundryPoints.size());
         }
     }
 
@@ -101,7 +101,7 @@ public class DisplayEngine {
         Imgproc.findContours(image, contours, hierachy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
         for (MatOfPoint contour : contours) {
             Rect rec = Imgproc.boundingRect(contour);
-            if (rec.area() > 100000) {
+            if (rec.area() > 30000) {
                 MatOfPoint2f matOfPoint2f = new MatOfPoint2f(contour.toArray());
                 Imgproc.approxPolyDP(matOfPoint2f, matOfPoint2f, 10, true);
                 if ((int) matOfPoint2f.size().height == 4) {

@@ -101,7 +101,7 @@ public class SystemController {
                 (int) boundryPoints.get(0).x, (int) boundryPoints.get(0).y, //LR
                 (int) boundryPoints.get(3).x, (int) boundryPoints.get(3).y);         //LL
         image.crop(0, 0, imgWidth, imgHeight);
-        Image anImage = new Image(640, 480);
+        Image anImage = new Image(Consts.CAMERA_HALF_WIDTH, Consts.CAMERA_HALF_HEIGHT);
         anImage.addImage(image, boundryX, boundryY, true);
         return anImage.getBufferedImage();
     }

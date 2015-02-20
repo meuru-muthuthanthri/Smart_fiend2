@@ -12,6 +12,7 @@ import org.opencv.core.Size;
 import org.opencv.highgui.Highgui;
 import static org.opencv.highgui.Highgui.*;
 import org.opencv.highgui.VideoCapture;
+import org.opencv.imgproc.Imgproc;
 
 /**
  *
@@ -53,23 +54,26 @@ public class Camera {
         return frame.clone();
     }
 
+    public Mat captureSmallPhoto() {
+        Mat smallImage = new Mat(new Size(Consts.CAMERA_HALF_WIDTH, Consts.CAMERA_HALF_HEIGHT), 3);
+        Imgproc.resize(capturePhoto(), smallImage, smallImage.size());
+        return smallImage;
+    }
+
     public boolean isOpen() {
         return webcam.isOpened();
     }
-    
-    public int getVideoWidth()
-    {
+
+    public int getVideoWidth() {
 //        System.out.println( webcam.get(CV_CAP_PROP_FRAME_WIDTH));
         return (int) webcam.get(CV_CAP_PROP_FRAME_WIDTH);
-       
-    
+
     }
-    public int getVideoHeight()
-    {
+
+    public int getVideoHeight() {
 //         System.out.println( webcam.get(CV_CAP_PROP_FRAME_HEIGHT));
         return (int) webcam.get(CV_CAP_PROP_FRAME_HEIGHT);
     }
-    
 
     private void runCamera() {
         for (int i = 0; i < 30; i++) {

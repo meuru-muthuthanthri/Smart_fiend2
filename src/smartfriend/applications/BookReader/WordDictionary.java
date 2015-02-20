@@ -1,39 +1,38 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package smartfriend.applications.BookReader;
 
 import java.io.File;
 import java.util.HashMap;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import smartfriend.util.general.MainConfiguration;
 
 /**
  *
  * @author Keshani
  */
-
-
 public class WordDictionary {
 
     private HashMap<String, Word> dictionaryMap;
-    private static String filePath ;
+    private static String filePath;
 
     public WordDictionary() {
-        dictionaryMap = new HashMap<>();        
+        dictionaryMap = new HashMap<>();
         try {
-            filePath = MainConfiguration.getCurrentDirectory()+"/resources/wordsMeaning.xml";
-            
+            filePath = MainConfiguration.getCurrentDirectory() + "/resources/wordsMeaning.xml";
+
             File xmlFile = new File(filePath);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc =  dBuilder.parse(xmlFile);
+            Document doc = dBuilder.parse(xmlFile);
 
             doc.getDocumentElement().normalize();
 
@@ -73,14 +72,13 @@ public class WordDictionary {
     public HashMap<String, Word> getDictionary() {
         return dictionaryMap;
     }
-    
+
     public static void main(String[] args) {
+
         new WordDictionary();
     }
-    
-    public Word getWord(String word){
+
+    public Word getWord(String word) {
         return dictionaryMap.get(word);
     }
-    
-    
 }

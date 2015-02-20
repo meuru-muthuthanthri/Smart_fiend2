@@ -1,4 +1,4 @@
-package smartfriend.Applications.BookReader;
+package smartfriend.applications.BookReader;
 
 import java.io.IOException;
 import smartfriend.util.general.MainConfiguration;

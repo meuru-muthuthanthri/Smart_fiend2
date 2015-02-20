@@ -2,7 +2,6 @@ package smartfriend.Applications.BookReader;
 
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import java.awt.image.BufferedImage;
 import java.util.Observable;
 import org.opencv.core.Mat;

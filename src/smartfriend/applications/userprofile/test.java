@@ -27,29 +27,13 @@ public class test {
     
     public static void main(String[] args) {
         
+        JPanel nm=new UserDetailManagement();
+//        NumberAppEndPanel endPanel= new NumberAppEndPanel();
         JFrame frame = new JFrame();
         frame.setUndecorated(true);
         frame.setSize(Consts.SCREEN_WIDHT,Consts.SCREEN_HEIGHT);
-        final JFXPanel fxPanel = new JFXPanel();
-        frame.add(fxPanel);
-        fxPanel.setVisible(true);
+        frame.add(nm);
+        nm.setVisible(true);
         frame.setVisible(true);
-        
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-            // This method is invoked on JavaFX thread
-            Parent parent = FXMLLoader.load(getClass().getResource("user_details.fxml"));
-            Scene scene = new Scene(parent);
-            fxPanel.setScene(scene);
-        } catch (IOException ex) {
-            Logger.getLogger(UserDetailsGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            }
-        });
-        
-        UserDetails userdetails = new UserDetails();
-        System.out.println(userdetails.getChildName()+" "+userdetails.getParentEmail()+" "+userdetails.getChildAge());
     }
 }

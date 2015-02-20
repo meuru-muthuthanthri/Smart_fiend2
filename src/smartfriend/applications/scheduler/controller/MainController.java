@@ -34,7 +34,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.controlsfx.dialog.Dialogs;
+//import org.controlsfx.dialog.Dialogs;
 import smartfriend.util.general.MainConfiguration;
 
 /**
@@ -139,36 +139,36 @@ public class MainController implements Initializable {
                     line_No=0;
                     int record_no=getLineNumber() +1;
                     File file = new File(MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("recordingFilePath") + record_no + ".wav");
-                    if (am_pm == null) {
-                        Dialogs.create()
-                                .title("Attention!")
-                                .masthead(null)
-                                .message("Please select am or pm button")
-                                .showInformation();
-                    }
-                    if (date == null) {
-                        Dialogs.create()
-                                .title("Attention!")
-                                .masthead(null)
-                                .message("Please select a date")
-                                .showInformation();
-                    }
-                    if(!file.exists()){
-                        Dialogs.create()
-                                .title("Attention!")
-                                .masthead(null)
-                                .message("Please record the task to be scheduled")
-                                .showInformation();
-                    }
-                    else {
-                        appendToFile();
-                        Dialogs.create()
-                                .title("Successful!")
-                                .masthead(null)
-                                .message("You have scheduled the task successfully")
-                                .showInformation();
-                        System.exit(0);
-                    }
+//                    if (am_pm == null) {
+//                        Dialogs.create()
+//                                .title("Attention!")
+//                                .masthead(null)
+//                                .message("Please select am or pm button")
+//                                .showInformation();
+//                    }
+//                    if (date == null) {
+//                        Dialogs.create()
+//                                .title("Attention!")
+//                                .masthead(null)
+//                                .message("Please select a date")
+//                                .showInformation();
+//                    }
+//                    if(!file.exists()){
+//                        Dialogs.create()
+//                                .title("Attention!")
+//                                .masthead(null)
+//                                .message("Please record the task to be scheduled")
+//                                .showInformation();
+//                    }
+//                    else {
+//                        appendToFile();
+//                        Dialogs.create()
+//                                .title("Successful!")
+//                                .masthead(null)
+//                                .message("You have scheduled the task successfully")
+//                                .showInformation();
+//                        System.exit(0);
+//                    }
                 } catch (IOException ex) {
                     Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                 }

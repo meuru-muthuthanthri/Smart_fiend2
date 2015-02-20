@@ -169,7 +169,7 @@ public class GraphicRenderer implements Runnable {
     }
 
     public void drawPointsOnInfoPanel(Mat image, List<Point> points, Color color, int x, int y, int downScale) {
-        infoPanelGraphics2D.drawImage(getImage(image), x + X_OFFSET, y + Y_OFFSET, Consts.CAMERA_WIDTH / downScale, Consts.CAMERA_HEIGHT / downScale, null);
+        infoPanelGraphics2D.drawImage(getImage(image), x + X_OFFSET, y + Y_OFFSET, image.width() / downScale, image.height() / downScale, null);
         for (Point pt : points) {
             infoPanelGraphics2D.setColor(color);
             infoPanelGraphics2D.fillOval(x + X_OFFSET + (int) pt.x / downScale - 5, y + Y_OFFSET + (int) pt.y / downScale - 5, 10, 10);

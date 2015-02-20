@@ -44,7 +44,7 @@ public class DisplayEngine {
                     System.out.println(" x : " + pt.x + "   " + pt.y);
                 }
                 if (Consts.GRAPHICAL_DEBUG) {
-                    graphicRenderer.drawPointsOnInfoPanel(camera.captureSmallPhoto(), boundryPoints, Color.GREEN, 0, 0, 2);
+                    graphicRenderer.drawPointsOnInfoPanel(camera.captureSmallPhoto(), boundryPoints, Color.GREEN, 0, 0, 1);
                 }
                 PointTransform.initialize(boundryPoints, displaySize);
                 break;

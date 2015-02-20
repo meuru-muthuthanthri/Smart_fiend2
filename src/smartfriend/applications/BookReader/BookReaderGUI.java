@@ -66,12 +66,14 @@ public class BookReaderGUI extends JPanel implements ActionListener {
     private int screenWidth;
     private int screenHeight;
     private JPanel panel;
+    private Dictionary dictionary;
 
     private BookReaderGUI() throws IOException {
 
         setSize(Consts.SCREEN_WIDHT, Consts.SCREEN_HEIGHT);
         setOpaque(true);
         repaint();
+        dictionary = new Dictionary();
 
         agent = new TalkingAgent();
         currentDicPath = MainConfiguration.getCurrentDirectory();
@@ -189,26 +191,47 @@ public class BookReaderGUI extends JPanel implements ActionListener {
                     if (agent.isShowing()) {
                         agent.removeAgent();
                     }
-                    showAgentHappyMessage("Oh could not detect the word");
+
+                    // pause bkreader thread
                     bkReader.setRun(false);
 
-                    String[] wordObj = textExtractor.startTextExtracter();
-                    if (wordObj[0] == null) {
-                        throw new Exception("wordDetectionError");
+                    // get the selected word meaning
+                    String wordObj = textExtractor.startTextExtracter();
+//                    if (wordObj == null) {
+//                        throw new Exception("wordDetectionError");
+//                    }
+//                    
+                    Word currentWord = dictionary.getWord(wordObj);
+                    
+                    if(currentWord == null){
+                        throw new Exception("noWord");
                     }
 
                     panel = new JPanel();
 
-                    JLabel word = new JLabel(wordObj[1]);
+                    // set background image
+                    BufferedImage bufImage = ImageIO.read(new File(currentDicPath + "/resources/images/bookreader/unnamed.png"));
+                    bufImage = resize(bufImage, screenWidth, screenHeight);
+                    JLabel background = new JLabel(new ImageIcon(bufImage));
+                    background.setBounds(0, 0, screenWidth, screenHeight);
+
+                    //  word showing label
+                    JLabel word = new JLabel(currentWord.getName() + " - " + currentWord.getMeaning());
                     word.setBounds(100, 0, 700, 100);
                     word.setHorizontalTextPosition(JLabel.LEFT);
                     word.setVerticalTextPosition(JLabel.TOP);
-                    word.setFont(new Font("Calibri", Font.BOLD, 60));
+                    word.setFont(new Font("Calibri", Font.BOLD, 70));
+                    word.setForeground(Color.white);
 
-                    BufferedImage img = ImageIO.read(new File(wordObj[0]));
+                    // word related image showing label
+                    BufferedImage img = ImageIO.read(new File(currentWord.getFilePath()));
+                    img = resize(img, 643, 350);
                     JLabel image = new JLabel(new ImageIcon(img));
-                    image.setBounds(((int) (screenWidth / 2) - (int) (img.getWidth() / 2)), ((screenHeight) - (img.getWidth()) - 20), img.getWidth(), img.getHeight());
+                    image.setBounds(350, 150, 643, 350);
 
+
+
+                    // close button
                     JButton close = new JButton();
                     close.setText("Close");
                     close.setBackground(Color.green);
@@ -218,46 +241,27 @@ public class BookReaderGUI extends JPanel implements ActionListener {
                     panel.add(word);
                     panel.add(image);
                     panel.add(close);
+                    panel.add(background, -1);
                     panel.setVisible(true);
                     panel.setLayout(null);
                     panel.setBounds(0, 0, screenWidth, screenHeight);
                     panel.setBackground(Color.BLUE);
-                    this.add(panel);
+                    this.add(panel, 4);
                     getMeaning.setVisible(false);
                     exitButton.setVisible(false);
                     this.revalidate();
                     this.repaint();
 
+
                 } catch (Exception ex) {
-                    //  System.out.println("new word exception"+ ex);
-                    if (ex.getMessage() == "wordDetectionError");
-                    showAgentHappyMessage("Oh could not detect the word");
+                    if (ex.getMessage().equals("noWord")) {
+                        showAgentHappyMessage("Oh could not detect the word");
+                    } else {
+                        ex.printStackTrace();
+                    }
+                    System.out.println("@@@@@@@@@ " + ex.getMessage());
 
                 }
-                break;
-
-            case "Exit":
-                System.out.println("Exit pressed!");
-                GraphicRenderer.getInstance().showScreen(Consts.INTERACTIVE_BOOK,Consts.MAIN_SCREEN);
-        {
-            try {
-                instance = new BookReaderGUI();
-            } catch (IOException ex) {
-                Logger.getLogger(BookReaderGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-                break;
-            case "Close":
-                System.out.print("Close pressed!");
-                if (agent.isShowing()) {
-                    agent.removeAgent();
-                }
-                getMeaning.setVisible(true);
-                exitButton.setVisible(true);
-                this.remove(panel);
-                this.revalidate();
-                this.repaint();
-                bkReader.setRun(true);
                 break;
         }
     }

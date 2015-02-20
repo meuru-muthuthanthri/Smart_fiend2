@@ -53,4 +53,5 @@ public final class Consts {
     public static final String INTERACTIVE_BOOK = "InteractiveBook";
     public static final String NUMBERAPP = "NumberApp";
     public static final String SCHEDULER = "Scheduler";
+    public static final String USER_PROFILES = "User Profiles";
 }

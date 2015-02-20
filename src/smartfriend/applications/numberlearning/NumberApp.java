@@ -76,7 +76,6 @@ public class NumberApp extends JPanel implements Observer {
         nextButtonClickCount = 1;
         numberBoxCount = 0;
         results = initializeResults();
-
         //runStartUpWIndow();
         runNumberLearningApp();
     }

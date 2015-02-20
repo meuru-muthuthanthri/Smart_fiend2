@@ -31,14 +31,16 @@ import org.opencv.highgui.Highgui;
 import smartfriend.applications.BookReader.BookReaderGUI;
 import smartfriend.applications.numberlearning.NumberApp;
 import smartfriend.applications.scheduler.SchedulerGUI;
+import smartfriend.applications.scheduler.SchedulerManagement;
+import smartfriend.applications.userprofile.UserDetailManagement;
 import smartfriend.gui.GUIForm;
 import smartfriend.gui.HandGestureDisplayPanel;
 import smartfriend.gui.MainScreen;
 import smartfriend.gui.WelcomeScreen;
 import smartfriend.gui.WriteApp;
-import smartfriend.util.general.Camera;
 import smartfriend.handGesture.FingerName;
 import smartfriend.handGesture.HandPoint;
+import smartfriend.util.general.Camera;
 import smartfriend.util.general.Consts;
 
 /**
@@ -55,7 +57,7 @@ public class GraphicRenderer implements Runnable {
     private Graphics2D infoPanelGraphics2D;
     private HandGestureDisplayPanel screenPanel;
     private Container panelContainer;
-    private JPanel welcomeScreen, mainScreen, numberApp, writeApp, interactiveBookPanel, scheduler;
+    private JPanel welcomeScreen, mainScreen, numberApp, writeApp, interactiveBookPanel, scheduler, userProfiles;
     private HashMap<String, JPanel> jPanelMap;
 //    private GUIForm basePanel;
 
@@ -85,31 +87,35 @@ public class GraphicRenderer implements Runnable {
         infoPanelGraphics2D = (Graphics2D) infoPanel.getGraphics();
 
         panelContainer = base.getContentPane();
+
         welcomeScreen = new WelcomeScreen(this);
-//        numberApp = new NumberApp();
         mainScreen = new MainScreen(this);
         writeApp = new WriteApp();
         interactiveBookPanel = BookReaderGUI.getInstance();
         numberApp = new NumberApp();
-//        scheduler = new SchedulerGUI().getShchedulerPanel();
+        scheduler = new SchedulerManagement();
+        userProfiles = new UserDetailManagement();
 
-//        jPanelMap.put(Consts.SCHEDULER, scheduler);
-        jPanelMap.put(Consts.NUMBERAPP, numberApp);
-        jPanelMap.put(Consts.INTERACTIVE_BOOK, interactiveBookPanel);
-        jPanelMap.put(Consts.WRITE_APP, writeApp);
         jPanelMap.put(Consts.MAIN_SCREEN, mainScreen);
+        jPanelMap.put(Consts.WRITE_APP, writeApp);
+        jPanelMap.put(Consts.INTERACTIVE_BOOK, interactiveBookPanel);
+        jPanelMap.put(Consts.NUMBERAPP, numberApp);
+        jPanelMap.put(Consts.SCHEDULER, scheduler);
+        jPanelMap.put(Consts.USER_PROFILES, userProfiles);
 
         welcomeScreen.setVisible(false);
         mainScreen.setVisible(false);
         writeApp.setVisible(false);
         interactiveBookPanel.setVisible(false);
         numberApp.setVisible(false);
-//        scheduler.setVisible(false);
+        scheduler.setVisible(false);
+        userProfiles.setVisible(false);
 
-//        panelContainer.add(scheduler, -1);
-        panelContainer.add(interactiveBookPanel, -1);
-        panelContainer.add(writeApp, -1);
-        panelContainer.add(numberApp, -1);
+        panelContainer.add(writeApp);
+        panelContainer.add(interactiveBookPanel);
+        panelContainer.add(numberApp);
+        panelContainer.add(scheduler, -1);
+        panelContainer.add(userProfiles, -1);
         panelContainer.add(welcomeScreen, -1);
         panelContainer.add(mainScreen, -1);
 

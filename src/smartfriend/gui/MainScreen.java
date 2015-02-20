@@ -29,8 +29,8 @@ import smartfriend.util.general.Consts;
 public class MainScreen extends JPanel implements Runnable {
 
     private GraphicRenderer graphicRenderer;
-    private Button exitButton, writeAppButton1, numberAppButton, interactiveBookButton, schedularButton;
-
+    private Button exitButton, writeAppButton1, numberAppButton, interactiveBookButton, schedularButton, userDetails;
+    
     public MainScreen(GraphicRenderer gr) {
         this.graphicRenderer = gr;
         //new Thread(this).start();
@@ -83,8 +83,8 @@ public class MainScreen extends JPanel implements Runnable {
         });
         add(interactiveBookButton);
 
-        schedularButton = new Button("Book Read", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 200, 200, Consts.SCEDULAR_ICON);
-        schedularButton.setBounds(500, 100, schedularButton.getPreferredSize().width, schedularButton.getPreferredSize().height);
+        schedularButton = new Button("Scheduler", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 200, 200, Consts.SCEDULAR_ICON);
+        schedularButton.setBounds(600, 100, schedularButton.getPreferredSize().width, schedularButton.getPreferredSize().height);
         schedularButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -94,7 +94,22 @@ public class MainScreen extends JPanel implements Runnable {
                 graphicRenderer.showScreen(Consts.MAIN_SCREEN, Consts.SCHEDULER);
             }
         });
-//        add(schedularButton);
+        add(schedularButton);
+        
+        userDetails = new Button("User Profiles", Color.decode(Colors.PURPLE), Color.decode(Colors.DULL_PINK), 200, 200, Consts.PROFILE_ICON);
+        userDetails.setBounds(600, 350, userDetails.getPreferredSize().width, userDetails.getPreferredSize().height);
+        userDetails.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if (Consts.TALK) {
+                    VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("You are using book read application");
+                }
+                graphicRenderer.showScreen(Consts.MAIN_SCREEN, Consts.USER_PROFILES);
+            }
+        });
+        add(userDetails);
+        
+        
 
     }
 

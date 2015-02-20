@@ -38,7 +38,7 @@ import smartfriend.util.general.MainConfiguration;
  */
 public class taskRecordingManagement extends JPanel {
 
-    private JPanel foregroundPanel;
+    private JPanel foregroundPanel,backgroundPanel;
     private final ImageXMLParser xml;
     private final VoiceGenerator talk;
     private Button startRecordButton, stopRecordingButton, listenRecordingButton, saveRecordingButton;
@@ -64,7 +64,7 @@ public class taskRecordingManagement extends JPanel {
             foregroundPanel.setOpaque(false);
             foregroundPanel.setBounds(0, 0, Consts.SCREEN_WIDHT, Consts.SCREEN_HEIGHT);
 
-            startRecordButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 150, 100, xml.getImageLocation(7));
+            startRecordButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 150, 100, xml.getImageLocation(7));
             startRecordButton.setBounds(10, 20, startRecordButton.getPreferredSize().width, startRecordButton.getPreferredSize().height);
             startRecordButton.addActionListener(new ActionListener() {
 
@@ -77,7 +77,7 @@ public class taskRecordingManagement extends JPanel {
             });
             foregroundPanel.add(startRecordButton);
 
-            stopRecordingButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 150, 100, xml.getImageLocation(8));
+            stopRecordingButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 150, 100, xml.getImageLocation(8));
             stopRecordingButton.setBounds(170, 20, stopRecordingButton.getPreferredSize().width, stopRecordingButton.getPreferredSize().height);
             stopRecordingButton.addActionListener(new ActionListener() {
 
@@ -88,7 +88,7 @@ public class taskRecordingManagement extends JPanel {
             });
             foregroundPanel.add(stopRecordingButton);
 
-            listenRecordingButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 150, 100, xml.getImageLocation(9));
+            listenRecordingButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 150, 100, xml.getImageLocation(9));
             listenRecordingButton.setBounds(330, 20, listenRecordingButton.getPreferredSize().width, listenRecordingButton.getPreferredSize().height);
             listenRecordingButton.addActionListener(new ActionListener() {
 
@@ -107,20 +107,21 @@ public class taskRecordingManagement extends JPanel {
             });
             foregroundPanel.add(listenRecordingButton);
 
-            saveRecordingButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 150, 100, xml.getImageLocation(5));
+            saveRecordingButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.WHITE), 150, 100, xml.getImageLocation(5));
             saveRecordingButton.setBounds(490, 20, saveRecordingButton.getPreferredSize().width, saveRecordingButton.getPreferredSize().height);
             saveRecordingButton.addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
                     foregroundPanel.setVisible(false);
+                    backgroundPanel.setVisible(false);
                 }
             });
             foregroundPanel.add(saveRecordingButton);
 
             foregroundPanel.setOpaque(false);
             // create wrapper JPanel
-            JPanel backgroundPanel = new JPanel(new GridBagLayout());
+            backgroundPanel = new JPanel(new GridBagLayout());
             // add the passed in swing component first to ensure that it is in front
             backgroundPanel.add(foregroundPanel, gbc);
             // create foregroundPanel label to paint the background image

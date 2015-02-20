@@ -35,6 +35,8 @@ public class TextExtraction {
 
     public TextExtraction() {
         try {
+            System.load(MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("opencv_java2410"));
+
             template = Highgui.imread(MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("TempImage"));
             isWordShowing = false;
             cam = new Camera(Consts.CAMERA_ID_BOOKREADER);

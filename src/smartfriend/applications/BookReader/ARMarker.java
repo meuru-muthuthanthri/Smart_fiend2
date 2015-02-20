@@ -4,7 +4,7 @@
  */
 package smartfriend.applications.BookReader;
 
-import smartfriend.Applications.BookReader.aruco.Marker;
+import smartfriend.applications.BookReader.aruco.Marker;
 
 /**
  * ARMarker class

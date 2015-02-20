@@ -1,5 +1,5 @@
 
-package smartfriend.Applications.BookReader.aruco;
+package smartfriend.applications.BookReader.aruco;
 
 
 import java.util.Collections;

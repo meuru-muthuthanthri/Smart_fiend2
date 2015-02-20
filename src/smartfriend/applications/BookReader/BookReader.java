@@ -1,28 +1,19 @@
 package smartfriend.applications.BookReader;
 
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import java.awt.image.BufferedImage;
 import java.util.Observable;
 import org.opencv.core.Mat;
 import org.opencv.highgui.Highgui;
-import org.opencv.highgui.VideoCapture;
-import smartfriend.Applications.BookReader.aruco.Marker;
-import smartfriend.Applications.BookReader.aruco.MarkerDetector;
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+import smartfriend.applications.BookReader.aruco.Marker;
+import smartfriend.applications.BookReader.aruco.MarkerDetector;
 import org.opencv.imgproc.Imgproc;
 import smartfriend.util.general.MainConfiguration;
 import java.util.Observer;
 import java.util.Vector;
 import javax.swing.JFrame;
 import smartfriend.util.general.MediaContentPlayer;
-import smartfriend.gui.TalkingAgent;
 import smartfriend.speechRecognition.SpeechRecognizer;
 import smartfriend.util.general.Camera;
 import smartfriend.util.general.Consts;
-import uk.co.caprica.vlcj.player.MediaPlayerEventListener;
 
 public class BookReader implements Observer {
 

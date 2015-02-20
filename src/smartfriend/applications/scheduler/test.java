@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import smartfriend.util.general.Consts;
 
 /**
@@ -25,42 +26,14 @@ import smartfriend.util.general.Consts;
 public class test {
 
     public static void main(String[] args) {
-
+        
+        JPanel nm=new SchedulerManagement();
+//        NumberAppEndPanel endPanel= new NumberAppEndPanel();
         JFrame frame = new JFrame();
         frame.setUndecorated(true);
-        frame.setSize(Consts.SCREEN_WIDHT, Consts.SCREEN_HEIGHT);
-        final JFXPanel fxPanel = new JFXPanel();
-        frame.add(fxPanel);
-        fxPanel.setVisible(true);
+        frame.setSize(Consts.SCREEN_WIDHT,Consts.SCREEN_HEIGHT);
+        frame.add(nm);
+        nm.setVisible(true);
         frame.setVisible(true);
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    // This method is invoked on JavaFX thread
-                    Parent parent = FXMLLoader.load(getClass().getResource("scheduler.fxml"));
-                    Scene scene = new Scene(parent);
-                    fxPanel.setScene(scene);
-                } catch (IOException ex) {
-                    Logger.getLogger(SchedulerGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-
-        //*****************not here
-        Timer timer = new Timer();
-        // Check scheduling tasks every hour
-        timer.scheduleAtFixedRate(new TimerTask() {
-
-            @Override
-            public void run() {
-
-                System.out.println("every hour");
-                Scheduler sh = new Scheduler();
-//                sh.runScheduler();
-                System.out.println("testing");
-            }
-        }, 0, 60 * 60 * 1000);
     }
 }

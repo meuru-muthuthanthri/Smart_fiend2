@@ -6,6 +6,7 @@ import edu.cmu.sphinx.api.SpeechResult;
 import edu.cmu.sphinx.api.StreamSpeechRecognizer;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +50,14 @@ public class SpeechRecognizer extends Observable implements Runnable {
 
     public String getSpeechCommand(String command) {
 
+        if(command.contains("next")){
+            command = "next";
+        }
+        
+        if(command.contains("yes")){
+            command = "yes";
+        }
+        
         if (command.contains("story") || command.contains("book")) {
             System.out.println("story book command");
             command = "story book";
@@ -62,7 +71,7 @@ public class SpeechRecognizer extends Observable implements Runnable {
         if (command.contains("play") || command.contains("video")) {
             System.out.println("play video command");
             command = "play video";
-        }
+        }     
         return command;
     }
 
@@ -114,6 +123,7 @@ public class SpeechRecognizer extends Observable implements Runnable {
                 System.out.println(result.getHypothesis());
                 setSpeechCommand(result.getHypothesis());
                 setSpeechCommand(getSpeechCommand(getWord()));
+                
                 /*********************/
 //                setSpeechCommand("play video");
                 setChanged();        

@@ -33,7 +33,9 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import smartfriend.GraphicRenderer;
 import smartfriend.applications.userprofile.UserDetails;
+import smartfriend.gui.Button;
 import smartfriend.tts.VoiceGenerator;
+import smartfriend.util.general.Colors;
 import smartfriend.util.general.Consts;
 import smartfriend.util.general.ImageXMLParser;
 import smartfriend.util.general.MainConfiguration;
@@ -45,7 +47,7 @@ import smartfriend.util.reports.dto.NumberLearningDTO;
  */
 public class NumberApp extends JPanel implements Observer {
 
-    private JPanel foregroundPanel, numberCountBoxPanel;
+    private JPanel foregroundPanel, numberCountBoxPanel, accuracyPanel;
     private JLabel numberLabel, numberMainLabel, animationLabel, accuracyAnimationLabel, correctTextLabel, fireworkAnimationLabel, tellNumberTextLabel;
     private JButton leftButton, rightButton;
     private final JButton[] numberCountButton;
@@ -59,6 +61,7 @@ public class NumberApp extends JPanel implements Observer {
     private boolean nextRequested, backRequested;
     private int marks;
     private int count;
+    private Button newNextButton, newBackButton;
 
     public NumberApp() {
         
@@ -126,16 +129,22 @@ public class NumberApp extends JPanel implements Observer {
             numberCountBoxPanel.getGraphicsConfiguration();
             numberCountBoxPanel.setBounds(0, 0, 500, 150);
             numberCountBoxPanel.setLocation(432, 616);
+            
+            accuracyPanel = new JPanel();
+            accuracyPanel.setBounds(0, 0, 200, 100);
+            accuracyPanel.setLocation(710,400);
+            accuracyPanel.setOpaque(false);
+            foregroundPanel.add(accuracyPanel);
 
             accuracyAnimationLabel = new JLabel();
             accuracyAnimationLabel.setBounds(0, 0, 140, 200);
-            accuracyAnimationLabel.setLocation(77, 560);
+            accuracyAnimationLabel.setLocation(1120, 560);
             foregroundPanel.add(accuracyAnimationLabel);
 
             correctTextLabel = new JLabel();
             correctTextLabel.setBounds(0, 0, 240, 175);
-            correctTextLabel.setLocation(65, 580);
-            foregroundPanel.add(correctTextLabel);
+            correctTextLabel.setLocation(1100, 580);
+            accuracyPanel.add(correctTextLabel);
 
             fireworkAnimationLabel = new JLabel();
             fireworkAnimationLabel.setBounds(0, 0, 240, 175);
@@ -201,65 +210,88 @@ public class NumberApp extends JPanel implements Observer {
             spokenWordField.setFont(new Font("Orator Std", 1, 40)); 
             spokenWordField.setOpaque(false);
             spokenWordField.setBounds(340, 280, 300, 70);
-            spokenWordField.setLocation(180, 460);
+            spokenWordField.setLocation(180, 560);
             spokenWordField.setBorder(null);
             spokenWordField.setForeground(Color.white);
             spokenWordField.setBackground(Color.pink);
+            spokenWordField.setText("seven");
             foregroundPanel.add(spokenWordField);
-
-            //back button 
-            leftButton = new JButton();
-            foregroundPanel.add(leftButton);
-            leftButton.setSize(90, 90);
-            leftButton.setLocation(40, 310);
-            leftButton.setOpaque(false);
-            leftButton.setContentAreaFilled(false);
-            leftButton.setFocusPainted(false);
-            leftButton.setBorderPainted(false);
-            leftButton.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(xml.getImageLocation(30))));
-            leftButton.addActionListener(new ActionListener() {
+            
+            newBackButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 150, 150, xml.getImageLocation(30));
+            newBackButton.setBounds(5, 320, newBackButton.getPreferredSize().width, newBackButton.getPreferredSize().height);
+            newBackButton.addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
                     leftButtonActionPerformed(ae);
                 }
             });
+            foregroundPanel.add(newBackButton);
 
-            //next button
-            rightButton = new JButton();
-            foregroundPanel.add(rightButton);
-            rightButton.setSize(90, 90);
-            rightButton.setLocation(180, 310);
-            rightButton.setOpaque(false);
-            rightButton.setContentAreaFilled(false);
-            rightButton.setFocusPainted(false);
-            rightButton.setBorderPainted(false);
-            rightButton.setIcon(new ImageIcon(ImageIO.read(new File(xml.getImageLocation(31)))));
-            rightButton.addActionListener(new ActionListener() {
+            //back button 
+//            leftButton = new JButton();
+//            foregroundPanel.add(leftButton);
+//            leftButton.setSize(90, 90);
+//            leftButton.setLocation(40, 310);
+//            leftButton.setOpaque(false);
+//            leftButton.setContentAreaFilled(false);
+//            leftButton.setFocusPainted(false);
+//            leftButton.setBorderPainted(false);
+//            leftButton.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(xml.getImageLocation(30))));
+//            leftButton.addActionListener(new ActionListener() {
+//
+//                @Override
+//                public void actionPerformed(ActionEvent ae) {
+//                    leftButtonActionPerformed(ae);
+//                }
+//            });
+
+            newNextButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 150, 150, xml.getImageLocation(31));
+            newNextButton.setBounds(160, 320, newNextButton.getPreferredSize().width, newNextButton.getPreferredSize().height);
+            newNextButton.addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
                     rightButtonActionPerformed(ae);
                 }
             });
+            foregroundPanel.add(newNextButton);
+            
+            //next button
+//            rightButton = new JButton();
+//            foregroundPanel.add(rightButton);
+//            rightButton.setSize(90, 90);
+//            rightButton.setLocation(180, 310);
+//            rightButton.setOpaque(false);
+//            rightButton.setContentAreaFilled(false);
+//            rightButton.setFocusPainted(false);
+//            rightButton.setBorderPainted(false);
+//            //rightButton.setIcon(new ImageIcon(ImageIO.read(new File(xml.getImageLocation(31)))));
+//            rightButton.addActionListener(new ActionListener() {
+//
+//                @Override
+//                public void actionPerformed(ActionEvent ae) {
+//                    rightButtonActionPerformed(ae);
+//                }
+//            });
 
             //speech input button
             JButton speakButton = new JButton();
             foregroundPanel.add(speakButton);
             speakButton.setSize(150, 150);
-            speakButton.setLocation(50, 380);
+            speakButton.setLocation(50, 600);
             speakButton.setOpaque(false);
             speakButton.setContentAreaFilled(false);
             speakButton.setFocusPainted(false);
             speakButton.setBorderPainted(false);
             speakButton.setIcon(new ImageIcon(ImageIO.read(new File(xml.getImageLocation(36)))));
 
-            tellNumberTextLabel = new JLabel();
-            tellNumberTextLabel.setBounds(0, 0, 700, 700);
-            tellNumberTextLabel.setLocation(15, 200);
-            tellNumberTextLabel.setFont(new Font("Orator Std", 1, 18));
-            tellNumberTextLabel.setText("Tell Us What Number It Is?");
-            foregroundPanel.add(tellNumberTextLabel);
+//            tellNumberTextLabel = new JLabel();
+//            tellNumberTextLabel.setBounds(0, 0, 700, 700);
+//            tellNumberTextLabel.setLocation(15, 200);
+//            tellNumberTextLabel.setFont(new Font("Orator Std", 1, 18));
+//            tellNumberTextLabel.setText("Tell Us What Number It Is?");
+//            foregroundPanel.add(tellNumberTextLabel);
 
             // make the passed in swing component transparent
             foregroundPanel.setOpaque(false);
@@ -295,7 +327,7 @@ public class NumberApp extends JPanel implements Observer {
             //load next page resources
             numberArray[nextButtonClickCount] = MainConfiguration.getCurrentDirectory() + "/src/smartfriend/resources/images/speech/n" + nextButtonClickCount + ".jpg";
             numberLabel.setIcon(new ImageIcon(ImageIO.read(new File(numberArray[nextButtonClickCount]))));
-            numberMainLabel.setIcon(new ImageIcon(ImageIO.read(new File(MainConfiguration.getCurrentDirectory() + "/src/smartfriend/resources/images/speech/a" + nextButtonClickCount + ".png"))));
+            numberMainLabel.setIcon(new ImageIcon(ImageIO.read(new File(MainConfiguration.getCurrentDirectory() + "/src/smartfriend/applications/numberlearning/resources/images/a" + nextButtonClickCount + ".png"))));
             animationLabel.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(MainConfiguration.getCurrentDirectory() + "/src/smartfriend/resources/images/speech/animated" + nextButtonClickCount + ".gif")));
 
             //reset the no count box to white color
@@ -363,7 +395,7 @@ public class NumberApp extends JPanel implements Observer {
             //load next page resources
             numberArray[nextButtonClickCount] = MainConfiguration.getCurrentDirectory() + "/src/smartfriend/resources/images/speech/n" + nextButtonClickCount + ".jpg";
             numberLabel.setIcon(new ImageIcon(ImageIO.read(new File(numberArray[nextButtonClickCount]))));
-            numberMainLabel.setIcon(new ImageIcon(ImageIO.read(new File(MainConfiguration.getCurrentDirectory() + "/src/smartfriend/resources/images/speech/a" + nextButtonClickCount + ".png"))));
+            numberMainLabel.setIcon(new ImageIcon(ImageIO.read(new File(MainConfiguration.getCurrentDirectory() + "/src/smartfriend/applications/numberlearning/resources/images/a" + nextButtonClickCount + ".png"))));
             animationLabel.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(MainConfiguration.getCurrentDirectory() + "/src/smartfriend/resources/images/speech/animated" + nextButtonClickCount + ".gif")));
 
             //reset the no count box to white color
@@ -560,7 +592,7 @@ public class NumberApp extends JPanel implements Observer {
             }
         } 
         else if (arg.equals("close")) {
-            GraphicRenderer.getInstance().showScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
+//            GraphicRenderer.getInstance().showScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
         }
         else if (arg.equals("home")) {
             //set visible home screen

@@ -44,6 +44,7 @@ public final class Consts {
     public static boolean INDEX_ONLY = true;
     public static boolean SAVE_IMAGE_INTERACTIVE_BOOK = true;
     public static boolean TALK = false;
+    public static boolean WITHOUT_SEGMENTATION = true;
     
     //applications
     public static final String WRITE_APP = "WriteApp";

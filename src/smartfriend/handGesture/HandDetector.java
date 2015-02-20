@@ -109,13 +109,13 @@ public class HandDetector {
             Camera.saveImage(graphicRenderer.convertToMat(screenImage), "screenImage");
             Consts.saveImage = false;
         }
-        Core.absdiff(image, graphicRenderer.convertToMat(screenImage), image);
+//        Core.absdiff(image, graphicRenderer.convertToMat(screenImage), image);
         if (Consts.GRAPHICAL_DEBUG) {
             graphicRenderer.drawImageOnInfoPanel(image, 640, 0, 2);
         }
 
         Imgproc.cvtColor(image, image, Imgproc.COLOR_BGR2GRAY);
-        Imgproc.threshold(image, image, IMG_THRESHOLD_VAL, 255, Imgproc.THRESH_BINARY);
+        Imgproc.threshold(image, image, IMG_THRESHOLD_VAL, 255, Imgproc.THRESH_BINARY_INV);
         if (Consts.GRAPHICAL_DEBUG) {
             graphicRenderer.drawImageOnInfoPanel(image, 960, 0, 2);
         }

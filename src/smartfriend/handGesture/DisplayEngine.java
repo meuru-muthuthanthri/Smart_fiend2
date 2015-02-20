@@ -57,6 +57,11 @@ public class DisplayEngine {
         this.displaySize = displaySize;
         while (true) {
             initialImage = img;
+            if(!(initialImage.size().area()>0)){
+                System.out.println("Camera is not ready yet " + img.depth());
+                continue;
+            }
+            System.out.println("Camera is not ready yet " + img.depth());
             boundryPoints = findBoundaries(initialImage.clone());
             if (boundryPoints.size() > 0) {
                 boundryPoints = sortPoints(boundryPoints);

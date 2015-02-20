@@ -22,6 +22,7 @@ public class Camera {
 
     private int cameraID;
     private VideoCapture webcam;
+    private Mat smallImage;
 
     /**
      * This class controls the camera and related actions
@@ -32,6 +33,7 @@ public class Camera {
         cameraID = id;
         webcam = new VideoCapture(cameraID);
         webcam.open(cameraID);
+        smallImage = new Mat(new Size(Consts.CAMERA_HALF_WIDTH, Consts.CAMERA_HALF_HEIGHT), 3);
         runCamera();        // allow camera to adjust itself
         System.out.println("Camera " + cameraID + " is ready");
     }
@@ -55,9 +57,13 @@ public class Camera {
     }
 
     public Mat captureSmallPhoto() {
-        Mat smallImage = new Mat(new Size(Consts.CAMERA_HALF_WIDTH, Consts.CAMERA_HALF_HEIGHT), 3);
-        Imgproc.resize(capturePhoto(), smallImage, smallImage.size());
+        Mat image = capturePhoto();
+        while (!(image.size().area() > 0)) {
+            image = capturePhoto();
+        }
+        Imgproc.resize(capturePhoto(), smallImage, new Size(Consts.CAMERA_HALF_WIDTH, Consts.CAMERA_HALF_HEIGHT));
         return smallImage;
+
     }
 
     public boolean isOpen() {

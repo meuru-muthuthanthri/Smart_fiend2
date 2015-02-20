@@ -4,6 +4,7 @@
  */
 package smartfriend;
 
+import java.awt.Color;
 import smartfriend.util.general.Camera;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -54,8 +55,13 @@ public class MainFlow implements Runnable {
         graphicRenderer = new GraphicRenderer(gUIForm, camera);
         gUIForm.setVisible(true);
         displayEngine = new DisplayEngine(camera, gUIForm.getDisplyDimentions(), graphicRenderer);
-        Mat initialImage = graphicRenderer.drawShapeOnImage(displayEngine.getInitialImage(), displayEngine.getBoundryPoints());
-        handDetector = new HandDetector(displayEngine, graphicRenderer, initialImage);
+        if (Consts.WITHOUT_SEGMENTATION) {
+            Mat initialImage = graphicRenderer.drawShapeOnImage(displayEngine.getInitialImage(), displayEngine.getBoundryPoints(), Color.WHITE);
+            handDetector = new HandDetector(displayEngine, graphicRenderer, initialImage);
+        } else {
+            Mat initialImage = graphicRenderer.drawShapeOnImage(displayEngine.getInitialImage(), displayEngine.getBoundryPoints(), Color.BLACK);
+            handDetector = new HandDetector(displayEngine, graphicRenderer, initialImage);
+        }
         systemController = new SystemController(gUIForm.getGraphicsDevice(), displayEngine.getBoundryPoints());
 
         voice = VoiceGenerator.getVoiceGeneratorInstance();
@@ -85,9 +91,9 @@ public class MainFlow implements Runnable {
             //graphicRenderer.drawImageOnInfoPanel(screenImage, 1);
             handpointer = handDetector.getHandPoint(camera.captureSmallPhoto(), screenImage);
             graphicRenderer.drawPointerOnScreen(handpointer);
-//            systemController.moveMousePointer(handpointer);
+            systemController.moveMousePointer(handpointer);
             if (handpointer.getState()) {
-//                systemController.leftMouseClick(handpointer);
+                systemController.leftMouseClick(handpointer);
             }
 
         }

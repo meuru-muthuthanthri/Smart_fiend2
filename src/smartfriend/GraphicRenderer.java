@@ -326,7 +326,7 @@ public class GraphicRenderer implements Runnable {
 
     }
 
-    public Mat drawShapeOnImage(Mat initialImageMat, ArrayList<Point> points) {
+    public Mat drawShapeOnImage(Mat initialImageMat, ArrayList<Point> points, Color color) {
         BufferedImage bi = new BufferedImage(initialImageMat.width(), initialImageMat.height(), BufferedImage.TYPE_INT_RGB);
         Graphics2D g = bi.createGraphics();
         BufferedImage bufferedImage = getImage(initialImageMat);
@@ -349,7 +349,7 @@ public class GraphicRenderer implements Runnable {
         }
         polygon.closePath();
         g.drawImage(bufferedImage, 0, 0, null);
-        g.setColor(Color.BLACK);
+        g.setColor(color);
         g.fill(polygon);
 
         return convertToMat(bi);

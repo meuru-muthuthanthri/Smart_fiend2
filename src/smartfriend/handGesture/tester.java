@@ -90,18 +90,18 @@ public class tester {
         infoPanel.setLayout(new BorderLayout());
         
         
-        
-        jPanel.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent me) {
-                System.out.println("@@@@444");
-            }
-            
-            @Override
-            public void mouseMoved(MouseEvent me) {
-                System.out.println("@@@" + me.getX() + "  " + me.getY());
-            }
-        });
+//        
+//        jPanel.addMouseMotionListener(new MouseMotionListener() {
+//            @Override
+//            public void mouseDragged(MouseEvent me) {
+//                System.out.println("@@@@444");
+//            }
+//            
+//            @Override
+//            public void mouseMoved(MouseEvent me) {
+//                System.out.println("@@@" + me.getX() + "  " + me.getY());
+//            }
+//        });
         
         infoPanelGraphics2D = (Graphics2D) infoPanel.getGraphics();
         BufferedImage myPicture = null;
@@ -126,6 +126,7 @@ public class tester {
             displayEngine = new DisplayEngine(convertToMat(initialImage), new Dimension(1280, 1024));
             
             Mat img = convertToMat(initialImage);
+            System.out.println("#### " +img.depth());
             Core.absdiff(convertToMat(initialImageBlack), convertToMat(handImage), img);
             drawImageOnInfoPanel(getImage(img), 0, 280, 2);
             Core.absdiff(img, convertToMat(screenImage), img);

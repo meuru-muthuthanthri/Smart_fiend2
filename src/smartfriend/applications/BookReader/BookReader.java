@@ -41,7 +41,7 @@ public class BookReader implements Observer {
 
             currentDir = MainConfiguration.getCurrentDirectory();
             System.load(currentDir + MainConfiguration.getInstance().getProperty("opencv_java2410"));
-            cam = new Camera(2);
+            cam = new Camera(Consts.CAMERA_ID_BOOKREADER);
             exit = false;// application start
 //            permission = true;
             run = true; // use to check whether get new word feature on or off

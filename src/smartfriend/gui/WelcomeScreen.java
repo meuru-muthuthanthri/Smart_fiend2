@@ -128,7 +128,9 @@ public class WelcomeScreen extends JPanel implements Runnable {
 //    }
     @Override
     public void run() {
-        VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("Welcome to Smart Friend");
+        if (Consts.TALK) {
+            VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("Welcome to Smart Friend");
+        }
         while (active) {
             if (kiteImageLabel.getBounds().x == kitePosition.x & kiteImageLabel.getBounds().y == kitePosition.y) {
                 kitePosition.x = (int) (930 * Math.random());

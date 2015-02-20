@@ -21,6 +21,7 @@ import org.opencv.core.Size;
 import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 import smartfriend.util.general.Camera;
+import smartfriend.util.general.Consts;
 import smartfriend.util.general.MainConfiguration;
 
 public class TextExtraction {
@@ -34,7 +35,7 @@ public class TextExtraction {
         try {
             template = Highgui.imread(MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("TempImage"));
             isWordShowing = false;
-            cam = new Camera(1);
+            cam = new Camera(Consts.CAMERA_ID_BOOKREADER);
             currentDicPath = MainConfiguration.getCurrentDirectory();
         } catch (IOException ex) {
             ex.printStackTrace();

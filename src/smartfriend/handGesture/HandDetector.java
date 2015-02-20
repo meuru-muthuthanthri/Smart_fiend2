@@ -39,7 +39,7 @@ import smartfriend.util.general.Consts;
  */
 public class HandDetector {
 
-    private static final int IMG_THRESHOLD_VAL = 75;
+    private static final int IMG_THRESHOLD_VAL = 200;
     private static final int HAND_POINTS_APPROXIMATION = 50;
     private static final double POINTER_SMOOTH_RATIO = 0.2;
     // used for simiplifying the defects list
@@ -50,7 +50,7 @@ public class HandDetector {
     private static final int MAX_THUMB = 200;
     private static final int MIN_INDEX = 60;
     private static final int MAX_INDEX = 120;
-    private static final int FINGER_WIDTH = 30;
+    private static final int FINGER_WIDTH = 10;
     private GraphicRenderer graphicRenderer;
     private DisplayEngine displayEngine;
     private Mat initialImage;
@@ -94,7 +94,7 @@ public class HandDetector {
         handConvexHull = new ArrayList<>();
         fingerTips = new ArrayList<>();
         namedFingers = new ArrayList<>();
-        
+
         if (Consts.GRAPHICAL_DEBUG) {
             graphicRenderer.drawImageOnInfoPanel(image, 960, 240, 2);
         }
@@ -109,17 +109,19 @@ public class HandDetector {
             Camera.saveImage(graphicRenderer.convertToMat(screenImage), "screenImage");
             Consts.saveImage = false;
         }
-//        Core.absdiff(image, graphicRenderer.convertToMat(screenImage), image);
+        if (!Consts.WITHOUT_SEGMENTATION) {
+            Core.absdiff(image, graphicRenderer.convertToMat(screenImage), image);
+        }
         if (Consts.GRAPHICAL_DEBUG) {
             graphicRenderer.drawImageOnInfoPanel(image, 640, 0, 2);
         }
 
         Imgproc.cvtColor(image, image, Imgproc.COLOR_BGR2GRAY);
-        Imgproc.threshold(image, image, IMG_THRESHOLD_VAL, 255, Imgproc.THRESH_BINARY_INV);
+        Imgproc.threshold(image, image, IMG_THRESHOLD_VAL, 255, Imgproc.THRESH_BINARY);
         if (Consts.GRAPHICAL_DEBUG) {
             graphicRenderer.drawImageOnInfoPanel(image, 960, 0, 2);
         }
-        
+
         Imgproc.findContours(image, contours, new Mat(), Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
         if (contours.size() > 0) {
             transformedBiggestContour = getBiggestContourMatOfPoint(contours);

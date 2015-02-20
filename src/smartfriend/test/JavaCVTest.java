@@ -16,7 +16,6 @@ import org.opencv.highgui.VideoCapture;
  *
  * @author Meuru
  */
-import sun.java2d.opengl.OGLContext;
 public class JavaCVTest{
 
     private static int WEB_CAMERA = 1;

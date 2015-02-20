@@ -20,12 +20,12 @@ import smartfriend.util.general.MainConfiguration;
  */
 
 
-public class Dictionary {
+public class WordDictionary {
 
     private HashMap<String, Word> dictionaryMap;
     private static String filePath ;
 
-    public Dictionary() {
+    public WordDictionary() {
         dictionaryMap = new HashMap<>();        
         try {
             filePath = MainConfiguration.getCurrentDirectory()+"/resources/wordsMeaning.xml";
@@ -75,7 +75,7 @@ public class Dictionary {
     }
     
     public static void main(String[] args) {
-        new Dictionary();
+        new WordDictionary();
     }
     
     public Word getWord(String word){

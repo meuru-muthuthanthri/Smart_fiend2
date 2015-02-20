@@ -66,14 +66,14 @@ public class BookReaderGUI extends JPanel implements ActionListener {
     private int screenWidth;
     private int screenHeight;
     private JPanel panel;
-    private Dictionary dictionary;
+//    private WordDictionary dictionary;
 
     private BookReaderGUI() throws IOException {
 
         setSize(Consts.SCREEN_WIDHT, Consts.SCREEN_HEIGHT);
         setOpaque(true);
         repaint();
-        dictionary = new Dictionary();
+//        dictionary = new WordDictionary();
 
         agent = new TalkingAgent();
         currentDicPath = MainConfiguration.getCurrentDirectory();
@@ -186,82 +186,82 @@ public class BookReaderGUI extends JPanel implements ActionListener {
                 break;
 
             case "Meaning":
-                try {
-                    System.out.println("getmeaning");
-                    if (agent.isShowing()) {
-                        agent.removeAgent();
-                    }
-
-                    // pause bkreader thread
-                    bkReader.setRun(false);
-
-                    // get the selected word meaning
-                    String wordObj = textExtractor.startTextExtracter();
-//                    if (wordObj == null) {
-//                        throw new Exception("wordDetectionError");
+//                try {
+//                    System.out.println("getmeaning");
+//                    if (agent.isShowing()) {
+//                        agent.removeAgent();
 //                    }
+//
+//                    // pause bkreader thread
+//                    bkReader.setRun(false);
+//
+//                    // get the selected word meaning
+//                    String wordObj = textExtractor.startTextExtracter();
+////                    if (wordObj == null) {
+////                        throw new Exception("wordDetectionError");
+////                    }
+////                    
+//                    Word currentWord = dictionary.getWord(wordObj);
 //                    
-                    Word currentWord = dictionary.getWord(wordObj);
-                    
-                    if(currentWord == null){
-                        throw new Exception("noWord");
-                    }
-
-                    panel = new JPanel();
-
-                    // set background image
-                    BufferedImage bufImage = ImageIO.read(new File(currentDicPath + "/resources/images/bookreader/unnamed.png"));
-                    bufImage = resize(bufImage, screenWidth, screenHeight);
-                    JLabel background = new JLabel(new ImageIcon(bufImage));
-                    background.setBounds(0, 0, screenWidth, screenHeight);
-
-                    //  word showing label
-                    JLabel word = new JLabel(currentWord.getName() + " - " + currentWord.getMeaning());
-                    word.setBounds(100, 0, 700, 100);
-                    word.setHorizontalTextPosition(JLabel.LEFT);
-                    word.setVerticalTextPosition(JLabel.TOP);
-                    word.setFont(new Font("Calibri", Font.BOLD, 70));
-                    word.setForeground(Color.white);
-
-                    // word related image showing label
-                    BufferedImage img = ImageIO.read(new File(currentWord.getFilePath()));
-                    img = resize(img, 643, 350);
-                    JLabel image = new JLabel(new ImageIcon(img));
-                    image.setBounds(350, 150, 643, 350);
-
-
-
-                    // close button
-                    JButton close = new JButton();
-                    close.setText("Close");
-                    close.setBackground(Color.green);
-                    close.setBounds(1100, 650, 120, 50);
-                    close.addActionListener(this);
-
-                    panel.add(word);
-                    panel.add(image);
-                    panel.add(close);
-                    panel.add(background, -1);
-                    panel.setVisible(true);
-                    panel.setLayout(null);
-                    panel.setBounds(0, 0, screenWidth, screenHeight);
-                    panel.setBackground(Color.BLUE);
-                    this.add(panel, 4);
-                    getMeaning.setVisible(false);
-                    exitButton.setVisible(false);
-                    this.revalidate();
-                    this.repaint();
-
-
-                } catch (Exception ex) {
-                    if (ex.getMessage().equals("noWord")) {
-                        showAgentHappyMessage("Oh could not detect the word");
-                    } else {
-                        ex.printStackTrace();
-                    }
-                    System.out.println("@@@@@@@@@ " + ex.getMessage());
-
-                }
+//                    if(currentWord == null){
+//                        throw new Exception("noWord");
+//                    }
+//
+//                    panel = new JPanel();
+//
+//                    // set background image
+//                    BufferedImage bufImage = ImageIO.read(new File(currentDicPath + "/resources/images/bookreader/unnamed.png"));
+//                    bufImage = resize(bufImage, screenWidth, screenHeight);
+//                    JLabel background = new JLabel(new ImageIcon(bufImage));
+//                    background.setBounds(0, 0, screenWidth, screenHeight);
+//
+//                    //  word showing label
+//                    JLabel word = new JLabel(currentWord.getName() + " - " + currentWord.getMeaning());
+//                    word.setBounds(100, 0, 700, 100);
+//                    word.setHorizontalTextPosition(JLabel.LEFT);
+//                    word.setVerticalTextPosition(JLabel.TOP);
+//                    word.setFont(new Font("Calibri", Font.BOLD, 70));
+//                    word.setForeground(Color.white);
+//
+//                    // word related image showing label
+//                    BufferedImage img = ImageIO.read(new File(currentWord.getFilePath()));
+//                    img = resize(img, 643, 350);
+//                    JLabel image = new JLabel(new ImageIcon(img));
+//                    image.setBounds(350, 150, 643, 350);
+//
+//
+//
+//                    // close button
+//                    JButton close = new JButton();
+//                    close.setText("Close");
+//                    close.setBackground(Color.green);
+//                    close.setBounds(1100, 650, 120, 50);
+//                    close.addActionListener(this);
+//
+//                    panel.add(word);
+//                    panel.add(image);
+//                    panel.add(close);
+//                    panel.add(background, -1);
+//                    panel.setVisible(true);
+//                    panel.setLayout(null);
+//                    panel.setBounds(0, 0, screenWidth, screenHeight);
+//                    panel.setBackground(Color.BLUE);
+//                    this.add(panel, 4);
+//                    getMeaning.setVisible(false);
+//                    exitButton.setVisible(false);
+//                    this.revalidate();
+//                    this.repaint();
+//
+//
+//                } catch (Exception ex) {
+//                    if (ex.getMessage().equals("noWord")) {
+//                        showAgentHappyMessage("Oh could not detect the word");
+//                    } else {
+//                        ex.printStackTrace();
+//                    }
+//                    System.out.println("@@@@@@@@@ " + ex.getMessage());
+//
+//                }
                 break;
         }
     }

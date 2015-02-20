@@ -195,12 +195,15 @@ public class BookReaderGUI extends JPanel implements ActionListener {
                     if (wordObj == null) {
                         throw new Exception("wordDetectionError");
                     }
-////                    
-                    Word currentWord = dictionary.getWord(wordObj);
+                    WordObject currentWord = dictionary.getWord(wordObj);
+                    if (currentWord == null) {
+                        currentWord = dictionary.spellCorrectedWord(wordObj);
+                    }
 
                     if (currentWord == null) {
                         throw new Exception("noWord");
                     }
+                    
 
                     panel = new JPanel();
 

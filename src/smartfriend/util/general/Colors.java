@@ -23,4 +23,6 @@ public final class Colors {
     public static final String LIGHT_PINK = "#FFCCFF";
     public static final String GREY = "#C0C0C0";
     public static final String WHITE = "#FFFFFF";
+    public static final String PURPLE = "#8e7cc3";
+     public static final String DARK_PURPLE = "#9900ff";
 }

@@ -9,7 +9,7 @@ package smartfriend.applications.BookReader;
  *
  * @author Keshani
  */
-public class Word {
+public class WordObject {
     private String name;
     private String meaning;
     private String filePath;

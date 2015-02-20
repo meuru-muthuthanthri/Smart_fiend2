@@ -1,38 +1,49 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package smartfriend.applications.BookReader;
 
+import com.swabunga.spell.engine.SpellDictionaryHashMap;
+import com.swabunga.spell.event.SpellChecker;
 import java.io.File;
 import java.util.HashMap;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import smartfriend.util.general.MainConfiguration;
+import com.swabunga.spell.engine.Word;
 
 /**
  *
  * @author Keshani
  */
-public class WordDictionary {
 
-    private HashMap<String, Word> dictionaryMap;
-    private static String filePath;
+
+public class WordDictionary{
+
+    private HashMap<String, WordObject> dictionaryMap;
+    private static String filePath ;
+    private SpellDictionaryHashMap dictionary = null;
+    private  SpellChecker spellChecker = null;
 
     public WordDictionary() {
-        dictionaryMap = new HashMap<>();
+        dictionaryMap = new HashMap<>();        
         try {
-            filePath = MainConfiguration.getCurrentDirectory() + "/resources/wordsMeaning.xml";
-
+             dictionary =new SpellDictionaryHashMap(new
+                File(MainConfiguration.getCurrentDirectory()+"/resources/english.0"));
+             
+            spellChecker = new SpellChecker(dictionary);
+            filePath = MainConfiguration.getCurrentDirectory()+"/resources/wordsMeaning.xml";
+            
             File xmlFile = new File(filePath);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(xmlFile);
+            Document doc =  dBuilder.parse(xmlFile);
 
             doc.getDocumentElement().normalize();
 
@@ -52,7 +63,7 @@ public class WordDictionary {
                     Element eElement = (Element) nNode;
 
                     // Create words by adding data from the XML
-                    Word word = new Word();
+                    WordObject word = new WordObject();
                     word.setName(eElement.getAttribute("name"));
                     word.setMeaning(eElement.getAttribute("meaning"));
                     word.setFilePath(eElement.getAttribute("filePath"));
@@ -68,17 +79,34 @@ public class WordDictionary {
         }
 
     }
+   private  List getSuggestions(String word,
+        int threshold) {
 
-    public HashMap<String, Word> getDictionary() {
+        return spellChecker.getSuggestions(word, threshold);
+    }
+    public HashMap<String, WordObject> getDictionary() {
         return dictionaryMap;
     }
-
+    
     public static void main(String[] args) {
-
-        new WordDictionary();
+      //  new Dictionary();
+    }
+    
+    public WordObject getWord(String word){
+        return dictionaryMap.get(word);
     }
 
-    public Word getWord(String word) {
-        return dictionaryMap.get(word);
+    public WordObject spellCorrectedWord(String term)
+    {
+        WordObject retunTerm=null;
+        List<Word> list = getSuggestions(term, 3);
+        for(Word word:list)
+        {
+            System.out.println(word.getWord());
+           retunTerm= getWord(word.getWord());
+           if(retunTerm!=null)
+               break;
+        }
+        return retunTerm;   
     }
 }

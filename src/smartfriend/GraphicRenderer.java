@@ -28,7 +28,7 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.Point;
 import org.opencv.highgui.Highgui;
-import smartfriend.Applications.BookReader.BookReaderGUI;
+import smartfriend.applications.BookReader.BookReaderGUI;
 import smartfriend.applications.numberlearning.NumberApp;
 import smartfriend.applications.scheduler.SchedulerGUI;
 import smartfriend.gui.GUIForm;

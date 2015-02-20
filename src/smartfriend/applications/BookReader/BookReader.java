@@ -1,4 +1,4 @@
-package smartfriend.Applications.BookReader;
+package smartfriend.applications.BookReader;
 
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;

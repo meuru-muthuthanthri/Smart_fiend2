@@ -1,31 +1,30 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package smartfriend.applications.BookReader;
 
 import java.io.File;
 import java.util.HashMap;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import smartfriend.util.general.MainConfiguration;
 
 /**
  *
  * @author Keshani
  */
-
-
-public class Dictionary {
-
+public class WordDictionary {
+    
     private HashMap<String, Word> dictionaryMap;
     private static String filePath ;
 
-    public Dictionary() {
+    public WordDictionary() {
         dictionaryMap = new HashMap<>();        
         try {
             filePath = MainConfiguration.getCurrentDirectory()+"/resources/wordsMeaning.xml";
@@ -75,12 +74,10 @@ public class Dictionary {
     }
     
     public static void main(String[] args) {
-        new Dictionary();
+       new WordDictionary();
     }
     
     public Word getWord(String word){
         return dictionaryMap.get(word);
     }
-    
-    
 }

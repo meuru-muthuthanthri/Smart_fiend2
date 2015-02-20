@@ -11,7 +11,7 @@
  *
  * Created on Nov 12, 2014, 9:57:54 AM
  */
-package smartfriend.Applications.BookReader;
+package smartfriend.applications.BookReader;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -25,17 +25,14 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import smartfriend.GraphicRenderer;
 import smartfriend.gui.Button;
 import smartfriend.gui.TalkingAgent;
 import smartfriend.util.general.Colors;
@@ -47,8 +44,6 @@ import smartfriend.util.general.MainConfiguration;
  * @author Keshani
  */
 public class BookReaderGUI extends JPanel implements ActionListener {
-
-    
 
     /**
      * Creates new form BookReaderGUI
@@ -66,14 +61,14 @@ public class BookReaderGUI extends JPanel implements ActionListener {
     private int screenWidth;
     private int screenHeight;
     private JPanel panel;
-    private Dictionary dictionary;
+    private WordDictionary dictionary;
 
     private BookReaderGUI() throws IOException {
 
         setSize(Consts.SCREEN_WIDHT, Consts.SCREEN_HEIGHT);
         setOpaque(true);
         repaint();
-        dictionary = new Dictionary();
+        dictionary = new WordDictionary();
 
         agent = new TalkingAgent();
         currentDicPath = MainConfiguration.getCurrentDirectory();
@@ -202,8 +197,8 @@ public class BookReaderGUI extends JPanel implements ActionListener {
 //                    }
 //                    
                     Word currentWord = dictionary.getWord(wordObj);
-                    
-                    if(currentWord == null){
+
+                    if (currentWord == null) {
                         throw new Exception("noWord");
                     }
 
@@ -229,8 +224,6 @@ public class BookReaderGUI extends JPanel implements ActionListener {
                     JLabel image = new JLabel(new ImageIcon(img));
                     image.setBounds(350, 150, 643, 350);
 
-
-
                     // close button
                     JButton close = new JButton();
                     close.setText("Close");
@@ -251,7 +244,6 @@ public class BookReaderGUI extends JPanel implements ActionListener {
                     exitButton.setVisible(false);
                     this.revalidate();
                     this.repaint();
-
 
                 } catch (Exception ex) {
                     if (ex.getMessage().equals("noWord")) {

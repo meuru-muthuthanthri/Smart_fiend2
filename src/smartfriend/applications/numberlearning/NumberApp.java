@@ -49,7 +49,7 @@ public class NumberApp extends JPanel implements Observer {
 
     private JPanel foregroundPanel, numberCountBoxPanel, accuracyPanel;
     private JLabel numberLabel, numberMainLabel, animationLabel, accuracyAnimationLabel, correctTextLabel, fireworkAnimationLabel, tellNumberTextLabel;
-    private JButton leftButton, rightButton;
+    private JButton leftButton, rightButton, closeButton;
     private final JButton[] numberCountButton;
     private JTextField spokenWordField;
     private final String[] numberArray;
@@ -147,7 +147,7 @@ public class NumberApp extends JPanel implements Observer {
 
             fireworkAnimationLabel = new JLabel();
             fireworkAnimationLabel.setBounds(0, 0, 240, 175);
-            fireworkAnimationLabel.setLocation(1100, 10);
+            fireworkAnimationLabel.setLocation(1050, 10);
             foregroundPanel.add(fireworkAnimationLabel);
 
             for (int k = 1; k <= 10; k++) {
@@ -213,7 +213,6 @@ public class NumberApp extends JPanel implements Observer {
             spokenWordField.setBorder(null);
             spokenWordField.setForeground(Color.white);
             spokenWordField.setBackground(Color.pink);
-            spokenWordField.setText("seven");
             foregroundPanel.add(spokenWordField);
             
             newBackButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 150, 150, xml.getImageLocation(30));
@@ -285,6 +284,22 @@ public class NumberApp extends JPanel implements Observer {
             speakButton.setBorderPainted(false);
             speakButton.setIcon(new ImageIcon(ImageIO.read(new File(xml.getImageLocation(36)))));
 
+            closeButton = new JButton();
+            foregroundPanel.add(closeButton);
+            closeButton.setBounds(0, 0, 500, 500);
+            closeButton.setLocation(1052, -190);
+            closeButton.setOpaque(false);
+            closeButton.setContentAreaFilled(false);
+            closeButton.setFocusPainted(false);
+            closeButton.setBorderPainted(false);
+            closeButton.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(xml.getImageLocation(40))));
+            closeButton.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    GraphicRenderer.getInstance().showScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
+                }
+            });
 //            tellNumberTextLabel = new JLabel();
 //            tellNumberTextLabel.setBounds(0, 0, 700, 700);
 //            tellNumberTextLabel.setLocation(15, 200);
@@ -591,7 +606,7 @@ public class NumberApp extends JPanel implements Observer {
             }
         } 
         else if (arg.equals("close")) {
-//            GraphicRenderer.getInstance().showScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
+            GraphicRenderer.getInstance().showScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
         }
         else if (arg.equals("home")) {
             //set visible home screen

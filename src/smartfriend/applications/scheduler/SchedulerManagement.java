@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -18,13 +19,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import smartfriend.GraphicRenderer;
 import smartfriend.applications.userprofile.KeyBoardPanel;
 import smartfriend.applications.userprofile.UserDetailManagement;
 import smartfriend.gui.Button;
@@ -38,24 +43,25 @@ import smartfriend.util.general.MainConfiguration;
  *
  * @author Nilaksha
  */
-public class SchedulerManagement extends JPanel implements MouseListener {
+public class SchedulerManagement extends JPanel implements MouseListener, Observer {
 
     private JPanel foregroundPanel;
     private final ImageXMLParser xml;
     private final VoiceGenerator talk;
     private JLabel dateLabel, yearLabel, monthLabel, DayLabel, timeLabel, hoursLabel, minutesLabel, recordLabel, mainLabel;
     private JTextField yearTextField, monthTextField, dayTextField, hoursTextField, minutesTextField;
-    private Button amButton, pmButton, recordingButton, saveButton;
+    private Button amButton, pmButton, recordingButton, saveButton, closeButton;
+
     private int line_No;
-    private int am,pm;
-    
+    private int am, pm;
+
     public SchedulerManagement() {
 
         foregroundPanel = new JPanel();
         xml = new ImageXMLParser("sImagesPath");
         talk = VoiceGenerator.getVoiceGeneratorInstance();
         runSchedulerGUI();
-        
+
         setSize(Consts.SCREEN_WIDHT, Consts.SCREEN_HEIGHT);
         setOpaque(true);
         repaint();
@@ -76,7 +82,7 @@ public class SchedulerManagement extends JPanel implements MouseListener {
             mainLabel.setForeground(Color.WHITE);
             mainLabel.setText("Task Scheduler");
             foregroundPanel.add(mainLabel);
-            
+
             dateLabel = new JLabel();
             dateLabel.setBounds(0, 0, 400, 200);
             dateLabel.setLocation(50, 220);
@@ -84,7 +90,7 @@ public class SchedulerManagement extends JPanel implements MouseListener {
             dateLabel.setForeground(Color.white);
             dateLabel.setText("Date");
             foregroundPanel.add(dateLabel);
-            
+
             yearLabel = new JLabel();
             yearLabel.setBounds(0, 0, 400, 200);
             yearLabel.setLocation(250, 180);
@@ -135,7 +141,7 @@ public class SchedulerManagement extends JPanel implements MouseListener {
             dayTextField.setFont(new Font("Ariel", 1, 25));
             foregroundPanel.add(dayTextField);
             dayTextField.addMouseListener(this);
-            
+
             timeLabel = new JLabel();
             timeLabel.setBounds(0, 0, 400, 200);
             timeLabel.setLocation(50, 370);
@@ -143,7 +149,7 @@ public class SchedulerManagement extends JPanel implements MouseListener {
             timeLabel.setForeground(Color.white);
             timeLabel.setText("Time");
             foregroundPanel.add(timeLabel);
-            
+
             hoursLabel = new JLabel();
             hoursLabel.setBounds(0, 0, 400, 200);
             hoursLabel.setLocation(250, 330);
@@ -177,7 +183,7 @@ public class SchedulerManagement extends JPanel implements MouseListener {
             minutesTextField.setFont(new Font("Ariel", 1, 25));
             foregroundPanel.add(minutesTextField);
             minutesTextField.addMouseListener(this);
-            
+
             amButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 140, 100, xml.getImageLocation(2));
             amButton.setBounds(530, 450, amButton.getPreferredSize().width, amButton.getPreferredSize().height);
             foregroundPanel.add(amButton);
@@ -187,8 +193,8 @@ public class SchedulerManagement extends JPanel implements MouseListener {
                 public void actionPerformed(ActionEvent ae) {
                     am = 1;
                 }
-            });            
-            
+            });
+
             pmButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 140, 100, xml.getImageLocation(3));
             pmButton.setBounds(680, 450, pmButton.getPreferredSize().width, pmButton.getPreferredSize().height);
             foregroundPanel.add(pmButton);
@@ -196,10 +202,10 @@ public class SchedulerManagement extends JPanel implements MouseListener {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    pm=1;
+                    pm = 1;
                 }
             });
-            
+
             recordLabel = new JLabel();
             recordLabel.setBounds(0, 0, 400, 200);
             recordLabel.setLocation(50, 540);
@@ -207,7 +213,7 @@ public class SchedulerManagement extends JPanel implements MouseListener {
             recordLabel.setForeground(Color.white);
             recordLabel.setText("Task");
             foregroundPanel.add(recordLabel);
-            
+
             recordingButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 200, 140, xml.getImageLocation(4));
             recordingButton.setBounds(210, 620, recordingButton.getPreferredSize().width, recordingButton.getPreferredSize().height);
             recordingButton.addActionListener(new ActionListener() {
@@ -217,9 +223,9 @@ public class SchedulerManagement extends JPanel implements MouseListener {
                     recordingButtonActionPerformed(ae);
                 }
             });
-            
+
             foregroundPanel.add(recordingButton);
-            
+
             saveButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 200, 140, xml.getImageLocation(5));
             saveButton.setBounds(1130, 620, saveButton.getPreferredSize().width, saveButton.getPreferredSize().height);
             foregroundPanel.add(saveButton);
@@ -231,7 +237,18 @@ public class SchedulerManagement extends JPanel implements MouseListener {
                     System.exit(0);
                 }
             });
-            
+
+            closeButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 130, 130, xml.getImageLocation(10));
+            closeButton.setBounds(1235, 0, closeButton.getPreferredSize().width, closeButton.getPreferredSize().height);
+            foregroundPanel.add(closeButton);
+            closeButton.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    GraphicRenderer.getInstance().showScreen(Consts.SCHEDULER, Consts.MAIN_SCREEN);
+                }
+            });
+
             foregroundPanel.setOpaque(false);
             // create wrapper JPanel
             JPanel backgroundPanel = new JPanel(new GridBagLayout());
@@ -251,20 +268,20 @@ public class SchedulerManagement extends JPanel implements MouseListener {
             Logger.getLogger(UserDetailManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void recordingButtonActionPerformed(ActionEvent ae){
+
+    private void recordingButtonActionPerformed(ActionEvent ae) {
         taskRecordingManagement trm = new taskRecordingManagement();
         trm.setLayout(new GridLayout(1, 1));
-        trm.setBounds(0,0,650,140);
-        trm.setLocation(430,620);
+        trm.setBounds(0, 0, 650, 140);
+        trm.setLocation(430, 620);
         trm.setOpaque(false);
         foregroundPanel.add(trm);
         trm.setVisible(true);
         foregroundPanel.validate();
         foregroundPanel.repaint();
-        
+
     }
-    
+
     public void appendToFile() {
         try {
 
@@ -272,17 +289,17 @@ public class SchedulerManagement extends JPanel implements MouseListener {
             int mm = Integer.parseInt(monthTextField.getText());
             int dd = Integer.parseInt(dayTextField.getText());
             int yy = Integer.parseInt(yearTextField.getText());
-            int hours= Integer.parseInt(hoursTextField.getText());
-            int minutes =Integer.parseInt(minutesTextField.getText());
+            int hours = Integer.parseInt(hoursTextField.getText());
+            int minutes = Integer.parseInt(minutesTextField.getText());
             String am_pm;
-            if(am==1){
-                am_pm="AM";
-            }else{
-                am_pm="PM";
+            if (am == 1) {
+                am_pm = "AM";
+            } else {
+                am_pm = "PM";
             }
             int waveRecordingNo = getLineNumber() + 1;
 
-            String data = "\n"+waveRecordingNo + " " + yy + " " + mm  + " " + dd + " " + hours + " " + minutes + " " + am_pm;
+            String data = "\n" + waveRecordingNo + " " + yy + " " + mm + " " + dd + " " + hours + " " + minutes + " " + am_pm;
 
             File file = new File(MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("schedulerFilePath"));
 
@@ -327,7 +344,7 @@ public class SchedulerManagement extends JPanel implements MouseListener {
         }
         return line_No;
     }
-    
+
     private static final GridBagConstraints gbc;
 
     static {
@@ -342,7 +359,7 @@ public class SchedulerManagement extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+
         JTextField t = (JTextField) e.getSource();
         KeyBoardPanel keyBoardPanel = new KeyBoardPanel(t);
         keyBoardPanel.setLayout(new GridLayout(1, 1));
@@ -357,21 +374,29 @@ public class SchedulerManagement extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        
+
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+    
+        if (arg.equals("close")) {
+            GraphicRenderer.getInstance().showScreen(Consts.SCHEDULER, Consts.MAIN_SCREEN);
+        }
     }
 }

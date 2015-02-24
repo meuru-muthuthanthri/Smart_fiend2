@@ -14,6 +14,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -22,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import smartfriend.GraphicRenderer;
 import smartfriend.gui.Button;
 import smartfriend.tts.VoiceGenerator;
 import smartfriend.util.general.Colors;
@@ -33,7 +36,7 @@ import smartfriend.util.general.MainConfiguration;
  *
  * @author Isuri
  */
-public class UserDetailManagement extends JPanel implements MouseListener {
+public class UserDetailManagement extends JPanel implements MouseListener, Observer {
 
     private JPanel foregroundPanel, keyBoardPanel;
     private final ImageXMLParser xml;
@@ -199,7 +202,7 @@ public class UserDetailManagement extends JPanel implements MouseListener {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    System.exit(0);
+                    GraphicRenderer.getInstance().showScreen(Consts.USER_PROFILES, Consts.MAIN_SCREEN);
                 }
             });
             foregroundPanel.add(closeButton);
@@ -681,5 +684,12 @@ public class UserDetailManagement extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (arg.equals("close")) {
+            GraphicRenderer.getInstance().showScreen(Consts.USER_PROFILES, Consts.MAIN_SCREEN);
+        }
     }
 }

@@ -96,7 +96,7 @@ public class MainScreen extends JPanel implements Runnable {
         });
         add(schedularButton);
         
-        userDetails = new Button("User Profiles", Color.decode(Colors.PURPLE), Color.decode(Colors.DULL_PINK), 200, 200, Consts.PROFILE_ICON);
+        userDetails = new Button("Profiles", Color.decode(Colors.PURPLE), Color.decode(Colors.DULL_PINK), 200, 200, Consts.PROFILE_ICON);
         userDetails.setBounds(600, 350, userDetails.getPreferredSize().width, userDetails.getPreferredSize().height);
         userDetails.addActionListener(new ActionListener() {
             @Override

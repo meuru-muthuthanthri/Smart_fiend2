@@ -76,6 +76,7 @@ public class HandPoint extends Point {
     public boolean getState() {
         if (clicked) {
             clicked = false;
+            resetTime();
             return true;
         } else {
             return false;

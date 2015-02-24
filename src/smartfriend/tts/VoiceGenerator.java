@@ -11,29 +11,34 @@ import marytts.exceptions.MaryConfigurationException;
 import marytts.exceptions.SynthesisException;
 import marytts.util.data.audio.AudioPlayer;
 
-public class VoiceGenerator {
-    
-    private static VoiceGenerator VOICE_GENERATOR;
+public class VoiceGenerator implements Runnable {
 
-    private VoiceGenerator(){        
+    private static VoiceGenerator VOICE_GENERATOR;
+    private  boolean speak;
+    private String text;
+
+    private VoiceGenerator() {
+        speak = false;
+        new Thread(this).start();
     }
-    
-    public static synchronized VoiceGenerator getVoiceGeneratorInstance(){
-        if(VOICE_GENERATOR == null){
+
+    public static synchronized VoiceGenerator getVoiceGeneratorInstance() {
+        if (VOICE_GENERATOR == null) {
             VOICE_GENERATOR = new VoiceGenerator();
         }
         return VOICE_GENERATOR;
     }
-            
-    
+
+
     //text to speech conversion
     public void voiceOutput(String text) {
-        SwingUtilities.invokeLater(new Runnable() {
+        this.text = text;
+        speak = true;        
 
-            @Override
-            public void run() {
-                try {
-            
+    }
+    
+    private void speak() {
+        try {
             MaryInterface marytts = new LocalMaryInterface();
             Set<String> voices = marytts.getAvailableVoices();
             //selects the built voice
@@ -50,8 +55,22 @@ public class VoiceGenerator {
         } catch (InterruptedException ex) {
             Logger.getLogger(VoiceGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            if (speak) {
+                speak = false;
+                speak();
+            } else {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(VoiceGenerator.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        });
-        
+
+        }
     }
 }

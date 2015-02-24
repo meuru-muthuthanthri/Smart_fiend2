@@ -18,7 +18,7 @@ public final class Consts {
 //    public static final int SCREEN_HEIGHT = 1024;
     //Hand Gesture Recognition Constants
     public static final int CAMERA_ID = 1;
-    public static final int CAMERA_ID_BOOKREADER = 2;
+    public static final int CAMERA_ID_BOOKREADER = 1;
     public static final int CAMERA_WIDTH = 640;
     public static final int CAMERA_HEIGHT = 480;
     public static final int CAMERA_HALF_WIDTH = 320;
@@ -44,7 +44,7 @@ public final class Consts {
     public static boolean GRAPHICAL_DEBUG = true;
     public static boolean INDEX_ONLY = true;
     public static boolean SAVE_IMAGE_INTERACTIVE_BOOK = true;
-    public static boolean TALK = false;
+    public static boolean TALK = true;
     public static boolean WITHOUT_SEGMENTATION = true;
     
     //applications

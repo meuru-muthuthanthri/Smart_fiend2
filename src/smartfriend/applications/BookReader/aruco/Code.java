@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package smartfriend.Applications.BookReader.aruco;
+package smartfriend.applications.BookReader.aruco;
 
 /**
  * The code stored as matrix of int represents the inside content of a marker.

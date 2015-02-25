@@ -61,6 +61,7 @@ public class BookReaderGUI extends JPanel implements ActionListener {
     private int screenWidth;
     private int screenHeight;
     private JPanel panel;
+    private JLabel backgroundImage;
     private WordDictionary dictionary;
 
     private BookReaderGUI() throws IOException {
@@ -76,16 +77,15 @@ public class BookReaderGUI extends JPanel implements ActionListener {
         textExtractor = new TextExtraction();
 
         //get the screen size
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        screenHeight = ((int) tk.getScreenSize().getHeight());
-        screenWidth = ((int) tk.getScreenSize().getWidth());
+        screenHeight = Consts.SCREEN_HEIGHT;
+        screenWidth = Consts.SCREEN_WIDHT;
 
         // load background image
         BufferedImage image = ImageIO.read(new File(currentDicPath + "/resources/images/bookreader/bookImage3.jpg"));
         BufferedImage resizedImage = resize(image, screenWidth, screenHeight);
 
         // initialize buttons 
-        JLabel backgroundImage = new JLabel(new ImageIcon(resizedImage));
+       backgroundImage = new JLabel(new ImageIcon(resizedImage));
 
         exitButton = new Button("Exit", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 200, 200, Consts.NUMBER_ICON);;
         startReading = new Button("Start", Color.decode(Colors.DULL_GREEN), Color.decode(Colors.DULL_PINK), 200, 200, Consts.NUMBER_ICON);
@@ -114,7 +114,7 @@ public class BookReaderGUI extends JPanel implements ActionListener {
         this.add(exitButton);
         this.add(startReading,1);
         this.add(getMeaning,2);
-        this.add(backgroundImage,3);
+       this.add(backgroundImage,3);
     }
 
     public static synchronized BookReaderGUI getInstance() {
@@ -215,14 +215,14 @@ public class BookReaderGUI extends JPanel implements ActionListener {
 
                     //  word showing label
                     JLabel word = new JLabel(currentWord.getName() + " - " + currentWord.getMeaning());
-                    word.setBounds(100, 0, 700, 100);
+                    word.setBounds(100, 0, 1200, 100);
                     word.setHorizontalTextPosition(JLabel.LEFT);
                     word.setVerticalTextPosition(JLabel.TOP);
                     word.setFont(new Font("Calibri", Font.BOLD, 70));
                     word.setForeground(Color.white);
 
                     // word related image showing label
-                    BufferedImage img = ImageIO.read(new File(currentWord.getFilePath()));
+                    BufferedImage img = ImageIO.read(new File(currentDicPath + currentWord.getFilePath()));
                     img = resize(img, 643, 350);
                     JLabel image = new JLabel(new ImageIcon(img));
                     image.setBounds(350, 150, 643, 350);
@@ -234,15 +234,17 @@ public class BookReaderGUI extends JPanel implements ActionListener {
                     close.setBounds(1100, 650, 120, 50);
                     close.addActionListener(this);
 
+                    backgroundImage.setVisible(false);
                     panel.add(word);
                     panel.add(image);
                     panel.add(close);
-                    panel.add(background, -1);
+                    panel.add(background);
+                    //panel.setOpaque(false);
                     panel.setVisible(true);
                     panel.setLayout(null);
                     panel.setBounds(0, 0, screenWidth, screenHeight);
                     panel.setBackground(Color.BLUE);
-                    this.add(panel, 4);
+                    this.add(panel);
                     getMeaning.setVisible(false);
                     exitButton.setVisible(false);
                     this.revalidate();
@@ -258,6 +260,20 @@ public class BookReaderGUI extends JPanel implements ActionListener {
 
                 }
                 break;
+                     case "Close":
+                System.out.print("Close pressed!");
+                if (agent.isShowing()) {
+                    agent.removeAgent();
+                }
+                getMeaning.setVisible(true);
+                exitButton.setVisible(true);
+                backgroundImage.setVisible(true);
+                this.remove(panel);
+                this.revalidate();
+                this.repaint();
+                bkReader.setRun(true);
+               break;
+                        
         }
     }
 

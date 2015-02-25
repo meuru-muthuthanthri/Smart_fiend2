@@ -34,9 +34,9 @@ public class BookReader implements Observer {
             System.load(currentDir + MainConfiguration.getInstance().getProperty("opencv_java2410"));
             cam = new Camera(Consts.CAMERA_ID_BOOKREADER);
             exit = false;// application start
-//            permission = true;
+   permission = false;
             run = true; // use to check whether get new word feature on or off
-      //      SpeechRecognizer.getSpeechInstance().addObserver(this);
+            SpeechRecognizer.getSpeechInstance().addObserver(this);
 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -56,16 +56,6 @@ public class BookReader implements Observer {
         book = new Book();
         Mat frame = cam.capturePhoto();
         String bkName = "TestBook";
-//        BufferedImage bufImg = Common.toBufferedImage(frame);
-//        Map hintMap = new HashMap();
-//        hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-//        String QRText = QRMarker.readQRCode(bufImg, "UTF-8", hintMap);
-
-//        if (!QRText.isEmpty()) {
-//            bkName = QRText;
-//        } else {
-//            System.out.println("QR Code is not detected");
-//        }
         book.setBkName(bkName);
         return book;
 
@@ -139,7 +129,7 @@ public class BookReader implements Observer {
                     System.out.println("no marker");
                     continue;
                 }
-
+               // System.out.println("detect "+detMarkers.firstElement().getMarkerId());
                 // if there is no new marker continue
                 if (priviousID == detMarkers.firstElement().getMarkerId()) {
                     continue;
@@ -160,7 +150,7 @@ public class BookReader implements Observer {
 
                 // remove talking agent 
                 BookReaderGUI.getInstance().removeAgent();
-                permission = true;
+     permission = true;
                 // check whether child give permission to run the video
                 if (permission) {
 
@@ -169,7 +159,7 @@ public class BookReader implements Observer {
                     if ((mediaPlayer != null) && (mediaPlayer.getPlayer().isPlaying())) {
                         mediaPlayer.closePlayer();
                     }
-                    playVideo(currentDir+mk.getVideoPath());
+                    playVideo(currentDir + mk.getVideoPath());
                     permission = false;
                 } else {
                     BookReaderGUI.getInstance().showAgentHappyMessage("Hi, If you want to watch the video say PLAY");
@@ -181,6 +171,7 @@ public class BookReader implements Observer {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -240,13 +231,10 @@ public class BookReader implements Observer {
                 }
             }
 
-            if (arg.equals("exit")) {
+            if (arg.equals("stop")) {
                 this.Exit();
             }
-            //if (media player dosent start)
-            // play video
-            //     System.out.println("get");
-
+           
         }
 
     }

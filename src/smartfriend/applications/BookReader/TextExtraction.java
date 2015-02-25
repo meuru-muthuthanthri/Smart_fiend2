@@ -38,7 +38,7 @@ public class TextExtraction {
             currentDicPath = MainConfiguration.getCurrentDirectory();
             System.load(currentDicPath + MainConfiguration.getInstance().getProperty("opencv_java2410"));
              System.load(currentDicPath + "/lib/TextExtraction/liblept168.dll");
-             System.load(currentDicPath + "/lib/TextExtraction/llibtesseract302.dll");
+             System.load(currentDicPath + "/lib/TextExtraction/libtesseract302.dll");
 
             template = Highgui.imread(MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("TempImage"));
             isWordShowing = false;
@@ -135,7 +135,7 @@ public class TextExtraction {
             while (vReal != 0) {
 
                 int pixelIntencity = buffImage.getRGB(vReal, yClose) & 0xFF;
-                // System.out.println("left" + pixelIntencity);
+               System.out.println("left" + pixelIntencity);
 
                 if (pixelIntencity >= threshold) {
 

@@ -11,6 +11,10 @@ import marytts.exceptions.MaryConfigurationException;
 import marytts.exceptions.SynthesisException;
 import marytts.util.data.audio.AudioPlayer;
 
+/**
+ *
+ * @author Nilaksha
+ */
 public class VoiceGenerator implements Runnable {
 
     private static VoiceGenerator VOICE_GENERATOR;

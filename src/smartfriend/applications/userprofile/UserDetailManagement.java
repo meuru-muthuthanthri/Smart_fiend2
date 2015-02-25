@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import smartfriend.GraphicRenderer;
 import smartfriend.gui.Button;
+import smartfriend.gui.KeyBoardPanel;
 import smartfriend.tts.VoiceGenerator;
 import smartfriend.util.general.Colors;
 import smartfriend.util.general.Consts;

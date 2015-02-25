@@ -3,38 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package smartfriend.applications.userprofile;
+package smartfriend.gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import smartfriend.applications.numberlearning.NumberAppEndPanel;
-import smartfriend.gui.Button;
 import smartfriend.util.general.Colors;
-import smartfriend.util.general.Consts;
 import smartfriend.util.general.ImageXMLParser;
 
 /**
  *
- * @author user
+ * @author Isuri
  */
 public class KeyBoardPanel extends JPanel {
 
     StringBuilder word = new StringBuilder("");
-    private Button keyboardCloseButton, letterOne, letterTwo, letterThree, letterFour, letterFive, letterSix, letterSeven, letterEight, letterNine, backButton;
+    private Button keyboardCloseButton, letterOne, letterTwo, letterThree, letterFour, letterFive, letterSix, letterSeven, letterEight, letterNine, backButton, nextButton;
     private final ImageXMLParser xml;
     private JPanel keyBoardPanel,backgroundPanel;
     JTextField t;
@@ -53,8 +41,8 @@ public class KeyBoardPanel extends JPanel {
             keyBoardPanel = new JPanel();
             keyBoardPanel.setLayout(null);
 
-            keyboardCloseButton = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 150, 150, xml.getImageLocation(12));
-            keyboardCloseButton.setBounds(320, 0, keyboardCloseButton.getPreferredSize().width, keyboardCloseButton.getPreferredSize().height);
+            keyboardCloseButton = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(12));
+            keyboardCloseButton.setBounds(210, 0, keyboardCloseButton.getPreferredSize().width, keyboardCloseButton.getPreferredSize().height);
 
             keyboardCloseButton.addActionListener(new ActionListener() {
 
@@ -69,8 +57,20 @@ public class KeyBoardPanel extends JPanel {
             });
             keyBoardPanel.add(keyboardCloseButton);
 
-            letterOne = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 150, 150, xml.getImageLocation(1));
-            letterOne.setBounds(0, 155, letterOne.getPreferredSize().width, letterOne.getPreferredSize().height);
+            nextButton = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(14));
+            nextButton.setBounds(105, 0, nextButton.getPreferredSize().width, nextButton.getPreferredSize().height);
+
+            nextButton.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                }
+            });
+            keyBoardPanel.add(nextButton);
+
+            
+            letterOne = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(1));
+            letterOne.setBounds(0, 105, letterOne.getPreferredSize().width, letterOne.getPreferredSize().height);
 
             letterOne.addActionListener(new ActionListener() {
                 int count = 0;
@@ -107,8 +107,8 @@ public class KeyBoardPanel extends JPanel {
             });
             keyBoardPanel.add(letterOne);
 
-            letterTwo = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 150, 150, xml.getImageLocation(2));
-            letterTwo.setBounds(160, 155, letterTwo.getPreferredSize().width, letterTwo.getPreferredSize().height);
+            letterTwo = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(2));
+            letterTwo.setBounds(105, 105, letterTwo.getPreferredSize().width, letterTwo.getPreferredSize().height);
 
             letterTwo.addActionListener(new ActionListener() {
                 int count = 0;
@@ -148,8 +148,8 @@ public class KeyBoardPanel extends JPanel {
             });
             keyBoardPanel.add(letterTwo);
 
-            letterThree = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 150, 150, xml.getImageLocation(3));
-            letterThree.setBounds(320, 155, letterThree.getPreferredSize().width, letterThree.getPreferredSize().height);
+            letterThree = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(3));
+            letterThree.setBounds(210, 105, letterThree.getPreferredSize().width, letterThree.getPreferredSize().height);
 
             letterThree.addActionListener(new ActionListener() {
                 int count = 0;
@@ -185,8 +185,8 @@ public class KeyBoardPanel extends JPanel {
             });
             keyBoardPanel.add(letterThree);
 
-            letterFour = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 150, 150, xml.getImageLocation(4));
-            letterFour.setBounds(0, 310, letterFour.getPreferredSize().width, letterFour.getPreferredSize().height);
+            letterFour = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(4));
+            letterFour.setBounds(0, 210, letterFour.getPreferredSize().width, letterFour.getPreferredSize().height);
 
             letterFour.addActionListener(new ActionListener() {
                 int count = 0;
@@ -222,8 +222,8 @@ public class KeyBoardPanel extends JPanel {
             });
             keyBoardPanel.add(letterFour);
 
-            letterFive = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 150, 150, xml.getImageLocation(5));
-            letterFive.setBounds(160, 310, letterFive.getPreferredSize().width, letterFive.getPreferredSize().height);
+            letterFive = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(5));
+            letterFive.setBounds(105, 210, letterFive.getPreferredSize().width, letterFive.getPreferredSize().height);
 
             letterFive.addActionListener(new ActionListener() {
                 int count = 0;
@@ -259,8 +259,8 @@ public class KeyBoardPanel extends JPanel {
             });
             keyBoardPanel.add(letterFive);
 
-            letterSix = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 150, 150, xml.getImageLocation(6));
-            letterSix.setBounds(320, 310, letterSix.getPreferredSize().width, letterSix.getPreferredSize().height);
+            letterSix = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(6));
+            letterSix.setBounds(210, 210, letterSix.getPreferredSize().width, letterSix.getPreferredSize().height);
 
             letterSix.addActionListener(new ActionListener() {
                 int count = 0;
@@ -297,9 +297,9 @@ public class KeyBoardPanel extends JPanel {
             });
             keyBoardPanel.add(letterSix);
 
-            letterSeven = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 150, 150, xml.getImageLocation(7));
+            letterSeven = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(7));
 
-            letterSeven.setBounds(0, 465, letterSeven.getPreferredSize().width, letterSeven.getPreferredSize().height);
+            letterSeven.setBounds(0, 315, letterSeven.getPreferredSize().width, letterSeven.getPreferredSize().height);
 
             letterSeven.addActionListener(new ActionListener() {
                 int count = 0;
@@ -342,10 +342,10 @@ public class KeyBoardPanel extends JPanel {
             );
             keyBoardPanel.add(letterSeven);
 
-            letterEight = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 150, 150, xml.getImageLocation(8));
+            letterEight = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(8));
 
             letterEight.setBounds(
-                    160, 465, letterEight.getPreferredSize().width, letterEight.getPreferredSize().height);
+                    105, 315, letterEight.getPreferredSize().width, letterEight.getPreferredSize().height);
 
             letterEight.addActionListener(new ActionListener() {
                 int count = 0;
@@ -383,8 +383,8 @@ public class KeyBoardPanel extends JPanel {
             );
             keyBoardPanel.add(letterEight);
 
-            letterNine = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 150, 150, xml.getImageLocation(9));
-            letterNine.setBounds(320, 465, letterNine.getPreferredSize().width, letterNine.getPreferredSize().height);
+            letterNine = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.WHITE), 100, 100, xml.getImageLocation(9));
+            letterNine.setBounds(210, 315, letterNine.getPreferredSize().width, letterNine.getPreferredSize().height);
 
             letterNine.addActionListener(new ActionListener() {
                 int count = 0;
@@ -428,7 +428,7 @@ public class KeyBoardPanel extends JPanel {
             );
             keyBoardPanel.add(letterNine);
 
-            backButton = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.GREY), 150, 150, xml.getImageLocation(13));
+            backButton = new Button("", Color.decode(Colors.GREY), Color.decode(Colors.GREY), 100, 100, xml.getImageLocation(13));
             backButton.setBounds(0, 0, backButton.getPreferredSize().width, backButton.getPreferredSize().height);
 
             backButton.addActionListener(new ActionListener() {

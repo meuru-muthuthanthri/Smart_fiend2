@@ -35,12 +35,15 @@ public class TextExtraction {
 
     public TextExtraction() {
         try {
-            System.load(MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("opencv_java2410"));
+            currentDicPath = MainConfiguration.getCurrentDirectory();
+            System.load(currentDicPath + MainConfiguration.getInstance().getProperty("opencv_java2410"));
+             System.load(currentDicPath + "/lib/TextExtraction/liblept168.dll");
+             System.load(currentDicPath + "/lib/TextExtraction/llibtesseract302.dll");
 
             template = Highgui.imread(MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("TempImage"));
             isWordShowing = false;
             cam = new Camera(Consts.CAMERA_ID_BOOKREADER);
-            currentDicPath = MainConfiguration.getCurrentDirectory();
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }

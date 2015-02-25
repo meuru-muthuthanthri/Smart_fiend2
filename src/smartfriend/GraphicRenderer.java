@@ -141,6 +141,60 @@ public class GraphicRenderer implements Runnable {
     public void showScreen(String src, String screenName) {
         jPanelMap.get(screenName).setVisible(true);
         jPanelMap.get(src).setVisible(false);
+        
+    }
+
+    public void closeScreen(String src, String screenName) {
+        jPanelMap.get(screenName).setVisible(true);
+        jPanelMap.get(src).setVisible(false);
+
+        panelContainer.remove(jPanelMap.get(src));
+        jPanelMap.remove(src);
+        switch (src) {
+            case Consts.WRITE_APP:
+                writeApp = new WriteApp();
+                jPanelMap.put(Consts.WRITE_APP, writeApp);
+                writeApp.setVisible(false);
+                panelContainer.add(writeApp);
+                writeApp.revalidate();
+                writeApp.repaint();
+                break;
+            case Consts.INTERACTIVE_BOOK:
+                interactiveBookPanel = BookReaderGUI.getInstance();
+                jPanelMap.put(Consts.INTERACTIVE_BOOK, interactiveBookPanel);
+                interactiveBookPanel.setVisible(false);
+                panelContainer.add(interactiveBookPanel);
+                interactiveBookPanel.revalidate();
+                interactiveBookPanel.repaint();
+                break;
+            case Consts.NUMBERAPP:
+                numberApp = new NumberApp();
+                jPanelMap.put(Consts.NUMBERAPP, numberApp);
+                numberApp.setVisible(false);
+                panelContainer.add(numberApp);
+                numberApp.revalidate();
+                numberApp.repaint();
+                break;
+            case Consts.SCHEDULER:
+                scheduler = new SchedulerManagement();
+                jPanelMap.put(Consts.SCHEDULER, scheduler);
+                scheduler.setVisible(false);
+                panelContainer.add(scheduler);
+                scheduler.revalidate();
+                scheduler.repaint();
+                break;
+            case Consts.USER_PROFILES:
+                userProfiles = new UserDetailManagement();
+                jPanelMap.put(Consts.USER_PROFILES, userProfiles);
+                userProfiles.setVisible(false);
+                panelContainer.add(userProfiles, -1);
+                userProfiles.revalidate();
+                userProfiles.repaint();
+                break;
+            default:
+                System.out.println("Cannot find the application to close");
+                break;
+        }
     }
 
     public JPanel getCorrespoindingPanel(String panelName) {

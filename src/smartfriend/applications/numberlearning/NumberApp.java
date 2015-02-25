@@ -297,7 +297,7 @@ public class NumberApp extends JPanel implements Observer {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    GraphicRenderer.getInstance().showScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
+                    GraphicRenderer.getInstance().closeScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
                 }
             });
 //            tellNumberTextLabel = new JLabel();

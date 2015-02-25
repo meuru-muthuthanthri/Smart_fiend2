@@ -50,7 +50,9 @@ public class UserDetails {
             while ((currentLine = br.readLine()) != null) {
 
                 String words[] = currentLine.split(" ");
-
+                if(words.length < 4){
+                    continue;
+                }
                 childName = words[0].trim();
                 email =words[1].trim();
                 year = Integer.parseInt(words[2].trim());

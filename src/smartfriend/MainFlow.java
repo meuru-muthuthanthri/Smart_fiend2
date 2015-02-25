@@ -93,7 +93,6 @@ public class MainFlow implements Runnable {
             graphicRenderer.drawPointerOnScreen(handpointer);
             systemController.moveMousePointer(handpointer);
             if (handpointer.getState()) {
-                System.out.println("@@@@@@@@@@@@@@@ clicked");
                 systemController.leftMouseClick(handpointer);
             }
 

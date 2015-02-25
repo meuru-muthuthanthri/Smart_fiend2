@@ -245,7 +245,7 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    GraphicRenderer.getInstance().showScreen(Consts.SCHEDULER, Consts.MAIN_SCREEN);
+                    GraphicRenderer.getInstance().closeScreen(Consts.SCHEDULER, Consts.MAIN_SCREEN);
                 }
             });
 

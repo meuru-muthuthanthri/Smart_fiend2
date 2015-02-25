@@ -63,7 +63,7 @@ public class WriteApp extends JPanel implements MouseMotionListener{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                GraphicRenderer.getInstance().showScreen(Consts.WRITE_APP, Consts.MAIN_SCREEN);
+                GraphicRenderer.getInstance().closeScreen(Consts.WRITE_APP, Consts.MAIN_SCREEN);
             }
         });
         add(backButton);

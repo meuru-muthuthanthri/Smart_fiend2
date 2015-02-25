@@ -55,7 +55,7 @@ public final class Consts {
     public static boolean WITHOUT_SEGMENTATION = true;
     
     //applications
-    public static final String WRITE_APP = "WriteApp";
+    public static final String BOARD_GAME = "BoardGame";
     public static final String MAIN_SCREEN = "MainScreen";
     public static final String INTERACTIVE_BOOK = "InteractiveBook";
     public static final String NUMBERAPP = "NumberApp";

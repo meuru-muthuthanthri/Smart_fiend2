@@ -202,7 +202,7 @@ public class UserDetailManagement extends JPanel implements MouseListener, Obser
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    GraphicRenderer.getInstance().closeScreen(Consts.USER_PROFILES, Consts.MAIN_SCREEN);
+                    GraphicRenderer.getInstance().closeScreen();
                 }
             });
             foregroundPanel.add(closeButton);
@@ -689,7 +689,7 @@ public class UserDetailManagement extends JPanel implements MouseListener, Obser
     @Override
     public void update(Observable o, Object arg) {
         if (arg.equals("close")) {
-            GraphicRenderer.getInstance().showScreen(Consts.USER_PROFILES, Consts.MAIN_SCREEN);
+            GraphicRenderer.getInstance().closeScreen();
         }
     }
 }

@@ -55,7 +55,7 @@ public class BoardGame extends JPanel implements MouseMotionListener {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                GraphicRenderer.getInstance().closeScreen(Consts.WRITE_APP, Consts.MAIN_SCREEN);
+                GraphicRenderer.getInstance().closeScreen();
             }
         });
         add(backButton);

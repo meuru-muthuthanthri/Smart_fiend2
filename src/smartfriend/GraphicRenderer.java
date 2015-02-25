@@ -58,7 +58,7 @@ public class GraphicRenderer implements Runnable {
     private HandGestureDisplayPanel screenPanel;
     private Container panelContainer;
     private JPanel welcomeScreen, mainScreen, numberApp, boardGame, interactiveBookPanel, scheduler, userProfiles;
-    private HashMap<String, JPanel> jPanelMap;
+    private JPanel currentApplication;
 //    private GUIForm basePanel;
 
     public static synchronized GraphicRenderer getInstance() {
@@ -67,55 +67,18 @@ public class GraphicRenderer implements Runnable {
 
     public GraphicRenderer(GUIForm base, final Camera camera) {
         infoPanel = setUpInfoPanel();
-        jPanelMap = new HashMap<>();
 
-        infoPanel.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                System.out.println("key pressed " + e);
-                int keyCode = e.getKeyCode();
-                if ((keyCode == KeyEvent.VK_NUMPAD5) || (keyCode == KeyEvent.VK_ENTER)
-                        || (keyCode == KeyEvent.VK_SPACE)) // take a snap when press NUMPAD-5, enter, or space is pressed
-                {
-                    Consts.saveImage = true;
-                    camera.takeSaveImage();
-
-                }
-            }
-        });
-
-//        basePanel = base;
+        //        basePanel = base;
         infoPanelGraphics2D = (Graphics2D) infoPanel.getGraphics();
 
         panelContainer = base.getContentPane();
 
         welcomeScreen = new WelcomeScreen(this);
         mainScreen = new MainScreen(this);
-        boardGame = new BoardGame();
-        interactiveBookPanel = BookReaderGUI.getInstance();
-        numberApp = new NumberApp();
-        scheduler = new SchedulerManagement();
-        userProfiles = new UserDetailManagement();
-
-        jPanelMap.put(Consts.MAIN_SCREEN, mainScreen);
-        jPanelMap.put(Consts.WRITE_APP, boardGame);
-        jPanelMap.put(Consts.INTERACTIVE_BOOK, interactiveBookPanel);
-        jPanelMap.put(Consts.NUMBERAPP, numberApp);
-        jPanelMap.put(Consts.SCHEDULER, scheduler);
-        jPanelMap.put(Consts.USER_PROFILES, userProfiles);
 
         welcomeScreen.setVisible(false);
         mainScreen.setVisible(false);
-        boardGame.setVisible(false);
-        interactiveBookPanel.setVisible(false);
-        numberApp.setVisible(false);
-        scheduler.setVisible(false);
-        userProfiles.setVisible(false);
 
-        panelContainer.add(boardGame);
-        panelContainer.add(interactiveBookPanel);
-        panelContainer.add(numberApp);
-        panelContainer.add(scheduler, -1);
-        panelContainer.add(userProfiles, -1);
         panelContainer.add(welcomeScreen, -1);
         panelContainer.add(mainScreen, -1);
 
@@ -137,76 +100,43 @@ public class GraphicRenderer implements Runnable {
         mainScreen.setVisible(true);
         panelContainer.remove(welcomeScreen);
     }
-
-    public void showScreen(String src, String screenName) {
-//        jPanelMap.get(screenName).setVisible(true);
-//        jPanelMap.get(src).setVisible(false);
-        
-        JPanel board = new SchedulerManagement();
-//        board.setBounds((Consts.SCREEN_WIDHT - 300) / 2, 50, 300, 400);
-        board.setVisible(true);
-        panelContainer.add(board,0);
-        board.repaint();
-        board.revalidate();
-        System.out.println("@@@@@@@@@@@@@@ added");
-        
+    
+    public JPanel getCurrentApplication(){
+        return currentApplication;
     }
 
-    public void closeScreen(String src, String screenName) {
-        jPanelMap.get(screenName).setVisible(true);
-        jPanelMap.get(src).setVisible(false);
-
-        panelContainer.remove(jPanelMap.get(src));
-        jPanelMap.remove(src);
-        switch (src) {
-            case Consts.WRITE_APP:
-                boardGame = new BoardGame();
-                jPanelMap.put(Consts.WRITE_APP, boardGame);
-                boardGame.setVisible(false);
-                panelContainer.add(boardGame);
-                boardGame.revalidate();
-                boardGame.repaint();
+    public void showScreen(String screenName) {
+        JPanel panel;
+        switch (screenName) {
+            case Consts.BOARD_GAME:
+                panel = new BoardGame();
                 break;
             case Consts.INTERACTIVE_BOOK:
-                interactiveBookPanel = BookReaderGUI.getInstance();
-                jPanelMap.put(Consts.INTERACTIVE_BOOK, interactiveBookPanel);
-                interactiveBookPanel.setVisible(false);
-                panelContainer.add(interactiveBookPanel);
-                interactiveBookPanel.revalidate();
-                interactiveBookPanel.repaint();
+                panel = BookReaderGUI.getInstance();
                 break;
             case Consts.NUMBERAPP:
-                numberApp = new NumberApp();
-                jPanelMap.put(Consts.NUMBERAPP, numberApp);
-                numberApp.setVisible(false);
-                panelContainer.add(numberApp);
-                numberApp.revalidate();
-                numberApp.repaint();
+                panel = new NumberApp();
                 break;
             case Consts.SCHEDULER:
-                scheduler = new SchedulerManagement();
-                jPanelMap.put(Consts.SCHEDULER, scheduler);
-                scheduler.setVisible(false);
-                panelContainer.add(scheduler);
-                scheduler.revalidate();
-                scheduler.repaint();
+                panel = new SchedulerManagement();
                 break;
             case Consts.USER_PROFILES:
-                userProfiles = new UserDetailManagement();
-                jPanelMap.put(Consts.USER_PROFILES, userProfiles);
-                userProfiles.setVisible(false);
-                panelContainer.add(userProfiles, -1);
-                userProfiles.revalidate();
-                userProfiles.repaint();
+                panel = new UserDetailManagement();
                 break;
             default:
-                System.out.println("Cannot find the application to close");
+                panel = new JPanel();
+                System.out.println("Cannot find the application to open");
                 break;
         }
+        panel.setVisible(true);
+        panelContainer.add(panel, 0);
+        panel.repaint();
+        panel.revalidate();
+        currentApplication = panel;
     }
 
-    public JPanel getCorrespoindingPanel(String panelName) {
-        return jPanelMap.get(panelName);
+    public void closeScreen() {
+        panelContainer.remove(currentApplication);
     }
 
     private JFrame setUpInfoPanel() {

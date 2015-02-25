@@ -55,8 +55,9 @@ public class MainScreen extends JPanel implements Runnable {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("You are using numbers application");
-                SpeechRecognizer.getSpeechInstance().addObserver((Observer) graphicRenderer.getCorrespoindingPanel(Consts.NUMBERAPP));
-                graphicRenderer.showScreen(Consts.MAIN_SCREEN, Consts.NUMBERAPP);
+                graphicRenderer.showScreen(Consts.NUMBERAPP);
+                SpeechRecognizer.getSpeechInstance().addObserver((Observer) graphicRenderer.getCurrentApplication());
+                
             }
         });
         add(numberAppButton);
@@ -67,7 +68,7 @@ public class MainScreen extends JPanel implements Runnable {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("Welcome to the board game");
-                graphicRenderer.showScreen(Consts.MAIN_SCREEN, Consts.WRITE_APP);
+                graphicRenderer.showScreen(Consts.BOARD_GAME);
             }
         });
         add(boardGame);
@@ -78,7 +79,7 @@ public class MainScreen extends JPanel implements Runnable {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("You are using book read application");
-                graphicRenderer.showScreen(Consts.MAIN_SCREEN, Consts.INTERACTIVE_BOOK);
+                graphicRenderer.showScreen(Consts.INTERACTIVE_BOOK);
             }
         });
         add(interactiveBookButton);
@@ -91,7 +92,7 @@ public class MainScreen extends JPanel implements Runnable {
                 if (Consts.TALK) {
                     VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("You are using book read application");
                 }
-                graphicRenderer.showScreen(Consts.MAIN_SCREEN, Consts.SCHEDULER);
+                graphicRenderer.showScreen(Consts.SCHEDULER);
             }
         });
         add(schedularButton);
@@ -104,7 +105,7 @@ public class MainScreen extends JPanel implements Runnable {
                 if (Consts.TALK) {
                     VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("You are using book read application");
                 }
-                graphicRenderer.showScreen(Consts.MAIN_SCREEN, Consts.USER_PROFILES);
+                graphicRenderer.showScreen(Consts.USER_PROFILES);
             }
         });
         add(userDetails);

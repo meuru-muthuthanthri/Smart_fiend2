@@ -297,7 +297,7 @@ public class NumberApp extends JPanel implements Observer {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    GraphicRenderer.getInstance().closeScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
+                    GraphicRenderer.getInstance().closeScreen();
                 }
             });
 //            tellNumberTextLabel = new JLabel();
@@ -606,7 +606,7 @@ public class NumberApp extends JPanel implements Observer {
             }
         } 
         else if (arg.equals("close")) {
-            GraphicRenderer.getInstance().showScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
+            GraphicRenderer.getInstance().closeScreen();
         }
         else if (arg.equals("home")) {
             //set visible home screen

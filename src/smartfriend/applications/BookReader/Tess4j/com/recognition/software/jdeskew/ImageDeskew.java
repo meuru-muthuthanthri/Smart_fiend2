@@ -1,7 +1,7 @@
 /**
  * <a url=http://www.jdeskew.com/>JDeskew</a>
  */
-package smartfriend.Applications.BookReader.Tess4j.com.recognition.software.jdeskew;
+package smartfriend.applications.BookReader.Tess4j.com.recognition.software.jdeskew;
 
 import java.awt.image.BufferedImage;
 

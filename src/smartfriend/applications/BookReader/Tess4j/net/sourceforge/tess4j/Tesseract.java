@@ -13,9 +13,9 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package smartfriend.Applications.BookReader.Tess4j.net.sourceforge.tess4j;
+package smartfriend.applications.BookReader.Tess4j.net.sourceforge.tess4j;
 
-import smartfriend.Applications.BookReader.Tess4j.net.sourceforge.vietocr.ImageIOHelper;
+import smartfriend.applications.BookReader.Tess4j.net.sourceforge.vietocr.ImageIOHelper;
 import com.sun.jna.Pointer;
 import java.awt.Rectangle;
 import java.awt.image.*;

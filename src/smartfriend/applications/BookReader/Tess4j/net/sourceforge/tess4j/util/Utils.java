@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package smartfriend.Applications.BookReader.Tess4j.net.sourceforge.tess4j.util;
+package smartfriend.applications.BookReader.Tess4j.net.sourceforge.tess4j.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

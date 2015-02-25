@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package smartfriend.Applications.BookReader.Tess4j.net.sourceforge.vietocr;
+package smartfriend.applications.BookReader.Tess4j.net.sourceforge.vietocr;
 
 import java.io.*;
 import java.util.*;

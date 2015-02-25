@@ -1,4 +1,4 @@
-package smartfriend.Applications.BookReader.aruco;
+package smartfriend.applications.BookReader.aruco;
 
 public class ExtParamException extends Exception{
 

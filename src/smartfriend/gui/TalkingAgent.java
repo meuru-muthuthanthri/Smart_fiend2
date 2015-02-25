@@ -8,14 +8,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
-import java.net.*;
-import javax.swing.BorderFactory;
+import java.net.MalformedURLException;
+import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import smartfriend.util.general.MainConfiguration;
 
 /**
@@ -58,16 +56,16 @@ public class TalkingAgent {
         //create label, contain message
         talkingLabel = new JLabel();
         talkingLabel.setForeground(Color.white);
-        talkingLabel.setFont(new Font("Calibri", Font.BOLD, 60));
+        talkingLabel.setFont(new Font("Calibri", Font.BOLD, 40));
        // Border border = BorderFactory.createLineBorder(Color.ORANGE, 5);
        // talkingLabel.setBorder(border);
         talkingLabel.setText(msgText);
         talkingLabel.setHorizontalTextPosition(JLabel.LEFT);
         talkingLabel.setVerticalTextPosition(JLabel.CENTER);
-        talkingLabel.setBounds(500, 40, 700, 400);
+        talkingLabel.setBounds(500, 40, 500, 200);
 
-        BcgContentPain.add(gifLabel,4);
-        BcgContentPain.add(talkingLabel,5);
+        BcgContentPain.add(gifLabel,0);
+        BcgContentPain.add(talkingLabel,0);
         BcgContentPain.setVisible(true);
         BcgContentPain.revalidate();
         BcgContentPain.repaint();

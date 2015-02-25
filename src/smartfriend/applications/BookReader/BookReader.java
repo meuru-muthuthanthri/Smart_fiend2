@@ -36,7 +36,7 @@ public class BookReader implements Observer {
             exit = false;// application start
 //            permission = true;
             run = true; // use to check whether get new word feature on or off
-            SpeechRecognizer.getSpeechInstance().addObserver(this);
+      //      SpeechRecognizer.getSpeechInstance().addObserver(this);
 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -169,7 +169,7 @@ public class BookReader implements Observer {
                     if ((mediaPlayer != null) && (mediaPlayer.getPlayer().isPlaying())) {
                         mediaPlayer.closePlayer();
                     }
-                    playVideo(mk.getVideoPath());
+                    playVideo(currentDir+mk.getVideoPath());
                     permission = false;
                 } else {
                     BookReaderGUI.getInstance().showAgentHappyMessage("Hi, If you want to watch the video say PLAY");

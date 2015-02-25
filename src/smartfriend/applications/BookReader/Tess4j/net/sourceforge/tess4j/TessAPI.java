@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package smartfriend.Applications.BookReader.Tess4j.net.sourceforge.tess4j;
+package smartfriend.applications.BookReader.Tess4j.net.sourceforge.tess4j;
 
 import com.sun.jna.*;
 import com.sun.jna.ptr.*;

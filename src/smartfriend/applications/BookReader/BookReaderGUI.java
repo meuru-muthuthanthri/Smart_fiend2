@@ -112,9 +112,9 @@ public class BookReaderGUI extends JPanel implements ActionListener {
         getMeaning.setVisible(false);
 
         this.add(exitButton);
-        this.add(startReading);
-        this.add(getMeaning);
-        this.add(backgroundImage, -1);
+        this.add(startReading,1);
+        this.add(getMeaning,2);
+        this.add(backgroundImage,3);
     }
 
     public static synchronized BookReaderGUI getInstance() {

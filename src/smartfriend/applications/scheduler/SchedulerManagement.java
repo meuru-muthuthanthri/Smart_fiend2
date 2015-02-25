@@ -270,7 +270,7 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
     }
 
     private void recordingButtonActionPerformed(ActionEvent ae) {
-        taskRecordingManagement trm = new taskRecordingManagement();
+        TaskRecordingManagement trm = new TaskRecordingManagement();
         trm.setLayout(new GridLayout(1, 1));
         trm.setBounds(0, 0, 650, 140);
         trm.setLocation(430, 620);

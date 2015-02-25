@@ -36,7 +36,7 @@ import smartfriend.util.general.MainConfiguration;
  *
  * @author Nilaksha
  */
-public class taskRecordingManagement extends JPanel {
+public class TaskRecordingManagement extends JPanel {
 
     private JPanel foregroundPanel,backgroundPanel;
     private final ImageXMLParser xml;
@@ -44,7 +44,7 @@ public class taskRecordingManagement extends JPanel {
     private Button startRecordButton, stopRecordingButton, listenRecordingButton, saveRecordingButton;
     int line_No;
 
-    public taskRecordingManagement() {
+    public TaskRecordingManagement() {
 
         xml = new ImageXMLParser("sImagesPath");
         talk = VoiceGenerator.getVoiceGeneratorInstance();

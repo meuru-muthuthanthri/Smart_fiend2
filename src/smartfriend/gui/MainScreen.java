@@ -29,7 +29,7 @@ import smartfriend.util.general.Consts;
 public class MainScreen extends JPanel implements Runnable {
 
     private GraphicRenderer graphicRenderer;
-    private Button exitButton, writeAppButton1, numberAppButton, interactiveBookButton, schedularButton, userDetails;
+    private Button exitButton, boardGame, numberAppButton, interactiveBookButton, schedularButton, userDetails;
     
     public MainScreen(GraphicRenderer gr) {
         this.graphicRenderer = gr;
@@ -61,16 +61,16 @@ public class MainScreen extends JPanel implements Runnable {
         });
         add(numberAppButton);
 
-        writeAppButton1 = new Button("Write", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 200, 200, Consts.LETTERS_ICON);
-        writeAppButton1.setBounds(350, 100, writeAppButton1.getPreferredSize().width, writeAppButton1.getPreferredSize().height);
-        writeAppButton1.addActionListener(new ActionListener() {
+        boardGame=  new Button("Game", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 200, 200, Consts.GAME_ICON);
+        boardGame.setBounds(350, 100, boardGame.getPreferredSize().width, boardGame.getPreferredSize().height);
+        boardGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("You are using write application");
+                VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("Welcome to the board game");
                 graphicRenderer.showScreen(Consts.MAIN_SCREEN, Consts.WRITE_APP);
             }
         });
-        add(writeAppButton1);
+        add(boardGame);
 
         interactiveBookButton = new Button("Book Read", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 450, 200, Consts.INTERACTIVE_BOOK_ICON);
         interactiveBookButton.setBounds(100, 350, interactiveBookButton.getPreferredSize().width, interactiveBookButton.getPreferredSize().height);

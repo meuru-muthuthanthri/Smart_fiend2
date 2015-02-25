@@ -37,7 +37,7 @@ import smartfriend.gui.GUIForm;
 import smartfriend.gui.HandGestureDisplayPanel;
 import smartfriend.gui.MainScreen;
 import smartfriend.gui.WelcomeScreen;
-import smartfriend.gui.WriteApp;
+import smartfriend.gui.BoardGame;
 import smartfriend.handGesture.FingerName;
 import smartfriend.handGesture.HandPoint;
 import smartfriend.util.general.Camera;
@@ -57,7 +57,7 @@ public class GraphicRenderer implements Runnable {
     private Graphics2D infoPanelGraphics2D;
     private HandGestureDisplayPanel screenPanel;
     private Container panelContainer;
-    private JPanel welcomeScreen, mainScreen, numberApp, writeApp, interactiveBookPanel, scheduler, userProfiles;
+    private JPanel welcomeScreen, mainScreen, numberApp, boardGame, interactiveBookPanel, scheduler, userProfiles;
     private HashMap<String, JPanel> jPanelMap;
 //    private GUIForm basePanel;
 
@@ -90,14 +90,14 @@ public class GraphicRenderer implements Runnable {
 
         welcomeScreen = new WelcomeScreen(this);
         mainScreen = new MainScreen(this);
-        writeApp = new WriteApp();
+        boardGame = new BoardGame();
         interactiveBookPanel = BookReaderGUI.getInstance();
         numberApp = new NumberApp();
         scheduler = new SchedulerManagement();
         userProfiles = new UserDetailManagement();
 
         jPanelMap.put(Consts.MAIN_SCREEN, mainScreen);
-        jPanelMap.put(Consts.WRITE_APP, writeApp);
+        jPanelMap.put(Consts.WRITE_APP, boardGame);
         jPanelMap.put(Consts.INTERACTIVE_BOOK, interactiveBookPanel);
         jPanelMap.put(Consts.NUMBERAPP, numberApp);
         jPanelMap.put(Consts.SCHEDULER, scheduler);
@@ -105,13 +105,13 @@ public class GraphicRenderer implements Runnable {
 
         welcomeScreen.setVisible(false);
         mainScreen.setVisible(false);
-        writeApp.setVisible(false);
+        boardGame.setVisible(false);
         interactiveBookPanel.setVisible(false);
         numberApp.setVisible(false);
         scheduler.setVisible(false);
         userProfiles.setVisible(false);
 
-        panelContainer.add(writeApp);
+        panelContainer.add(boardGame);
         panelContainer.add(interactiveBookPanel);
         panelContainer.add(numberApp);
         panelContainer.add(scheduler, -1);
@@ -139,8 +139,16 @@ public class GraphicRenderer implements Runnable {
     }
 
     public void showScreen(String src, String screenName) {
-        jPanelMap.get(screenName).setVisible(true);
-        jPanelMap.get(src).setVisible(false);
+//        jPanelMap.get(screenName).setVisible(true);
+//        jPanelMap.get(src).setVisible(false);
+        
+        JPanel board = new SchedulerManagement();
+//        board.setBounds((Consts.SCREEN_WIDHT - 300) / 2, 50, 300, 400);
+        board.setVisible(true);
+        panelContainer.add(board,0);
+        board.repaint();
+        board.revalidate();
+        System.out.println("@@@@@@@@@@@@@@ added");
         
     }
 
@@ -152,12 +160,12 @@ public class GraphicRenderer implements Runnable {
         jPanelMap.remove(src);
         switch (src) {
             case Consts.WRITE_APP:
-                writeApp = new WriteApp();
-                jPanelMap.put(Consts.WRITE_APP, writeApp);
-                writeApp.setVisible(false);
-                panelContainer.add(writeApp);
-                writeApp.revalidate();
-                writeApp.repaint();
+                boardGame = new BoardGame();
+                jPanelMap.put(Consts.WRITE_APP, boardGame);
+                boardGame.setVisible(false);
+                panelContainer.add(boardGame);
+                boardGame.revalidate();
+                boardGame.repaint();
                 break;
             case Consts.INTERACTIVE_BOOK:
                 interactiveBookPanel = BookReaderGUI.getInstance();

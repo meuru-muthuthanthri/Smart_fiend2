@@ -28,6 +28,7 @@ public final class Consts {
     public static final String WELCOME_IMAGE = IMAGE_SOURCE_DIRECTORY + "welcome.jpg";
     public static final String MAIN_IMAGE = IMAGE_SOURCE_DIRECTORY + "main.jpg";
     public static final String WRITE_APP_IMAGE = IMAGE_SOURCE_DIRECTORY + "writeApp.jpg";
+    public static final String BRICK_GAME_IMAGE = IMAGE_SOURCE_DIRECTORY + "brick_game.png";
     public static final String KITE_IMAGE = IMAGE_SOURCE_DIRECTORY + "kite.png";
     public static final String ENTER_ICON = IMAGE_SOURCE_DIRECTORY + "enter_icon.png";
     public static final String EXIT_ICON = IMAGE_SOURCE_DIRECTORY + "exit_icon.png";
@@ -36,6 +37,12 @@ public final class Consts {
     public static final String INTERACTIVE_BOOK_ICON = IMAGE_SOURCE_DIRECTORY + "interactiveBook_icon.png";
     public static final String SCEDULAR_ICON = IMAGE_SOURCE_DIRECTORY + "scheduler_icon.png";
     public static final String PROFILE_ICON = IMAGE_SOURCE_DIRECTORY + "profile_icon.png";
+    public static final String BACK_ICON = IMAGE_SOURCE_DIRECTORY + "back_icon.png";
+    public static final String PLAY_ICON = IMAGE_SOURCE_DIRECTORY + "play_icon.png";
+    public static final String LEFT_ICON = IMAGE_SOURCE_DIRECTORY + "left_icon.png";
+    public static final String RIGHT_ICON = IMAGE_SOURCE_DIRECTORY + "right_icon.png";
+    public static final String GAME_ICON = IMAGE_SOURCE_DIRECTORY + "game_icon.png";
+    public static final String MEANING_ICON = IMAGE_SOURCE_DIRECTORY + "meaning_icon.png";
     
     
     //sounds

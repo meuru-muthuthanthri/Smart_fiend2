@@ -43,7 +43,7 @@ import org.opencv.core.Point;
 import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
-import smartfriend.gui.WriteApp;
+import smartfriend.gui.BoardGame;
 import smartfriend.util.general.Consts;
 
 /**
@@ -109,7 +109,7 @@ public class tester {
             myPicture = ImageIO.read(new File(Consts.MAIN_IMAGE));
             infoPanelGraphics2D.drawImage(myPicture, null, 0, 0);
         } catch (IOException ex) {
-            Logger.getLogger(WriteApp.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BoardGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 //        infoPanel.add(picLabel,-1);

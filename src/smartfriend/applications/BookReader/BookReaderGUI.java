@@ -87,9 +87,9 @@ public class BookReaderGUI extends JPanel implements ActionListener {
         // initialize buttons 
         JLabel backgroundImage = new JLabel(new ImageIcon(resizedImage));
 
-        exitButton = new Button("Exit", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 200, 200, Consts.NUMBER_ICON);;
-        startReading = new Button("Start", Color.decode(Colors.DULL_GREEN), Color.decode(Colors.DULL_PINK), 200, 200, Consts.NUMBER_ICON);
-        getMeaning = new Button("Meaning", Color.decode(Colors.DULL_ORANGE), Color.decode(Colors.DULL_PINK), 200, 200, Consts.NUMBER_ICON);
+        exitButton = new Button("Exit", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 200, 200, Consts.BACK_ICON);;
+        startReading = new Button("Start", Color.decode(Colors.GREEN), Color.decode(Colors.DULL_PINK), 200, 200, Consts.PLAY_ICON);
+        getMeaning = new Button("Meaning", Color.decode(Colors.DULL_ORANGE), Color.decode(Colors.DULL_PINK), 200, 200, Consts.MEANING_ICON);
 
         // remove the layout from the panel
         this.setLayout(null);

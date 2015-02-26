@@ -17,8 +17,8 @@ public final class Consts {
 //    public static final int SCREEN_WIDHT = 1280;
 //    public static final int SCREEN_HEIGHT = 1024;
     //Hand Gesture Recognition Constants
-    public static final int CAMERA_ID = 1;
-    public static final int CAMERA_ID_BOOKREADER = 1;
+    public static final int CAMERA_ID = 0;
+    public static final int CAMERA_ID_BOOKREADER = 2;
     public static final int CAMERA_WIDTH = 640;
     public static final int CAMERA_HEIGHT = 480;
     public static final int CAMERA_HALF_WIDTH = 320;

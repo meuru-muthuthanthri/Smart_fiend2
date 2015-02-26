@@ -60,9 +60,9 @@ public class TalkingAgent {
        // Border border = BorderFactory.createLineBorder(Color.ORANGE, 5);
        // talkingLabel.setBorder(border);
         talkingLabel.setText(msgText);
-        talkingLabel.setHorizontalTextPosition(JLabel.LEFT);
+        talkingLabel.setHorizontalTextPosition(JLabel.RIGHT);
         talkingLabel.setVerticalTextPosition(JLabel.CENTER);
-        talkingLabel.setBounds(500, 40, 500, 200);
+        talkingLabel.setBounds(500, 40, 1000, 200);
 
         BcgContentPain.add(gifLabel,0);
         BcgContentPain.add(talkingLabel,0);

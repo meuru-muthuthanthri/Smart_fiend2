@@ -88,10 +88,6 @@ public class WordDictionary{
         return dictionaryMap;
     }
     
-    public static void main(String[] args) {
-      //  new Dictionary();
-    }
-    
     public WordObject getWord(String word){
         return dictionaryMap.get(word);
     }

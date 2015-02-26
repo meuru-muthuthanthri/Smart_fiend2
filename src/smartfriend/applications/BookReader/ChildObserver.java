@@ -88,8 +88,4 @@ public class ChildObserver  {
         return h;
     }
 
-    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, IOException {
-        ChildObserver ch = new ChildObserver(700, 690);
-        //ch.run();
-    }
 }

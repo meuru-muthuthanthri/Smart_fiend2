@@ -85,7 +85,7 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
 
             dateLabel = new JLabel();
             dateLabel.setBounds(0, 0, 400, 200);
-            dateLabel.setLocation(50, 220);
+            dateLabel.setLocation(50, 120);
             dateLabel.setFont(new Font("Ariel", 1, 40));
             dateLabel.setForeground(Color.white);
             dateLabel.setText("Date");
@@ -93,15 +93,15 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
 
             yearLabel = new JLabel();
             yearLabel.setBounds(0, 0, 400, 200);
-            yearLabel.setLocation(250, 180);
+            yearLabel.setLocation(250, 100);
             yearLabel.setFont(new Font("Ariel", 1, 25));
             yearLabel.setForeground(Color.white);
             yearLabel.setText("Year");
             foregroundPanel.add(yearLabel);
 
             yearTextField = new JTextField();
-            yearTextField.setBounds(0, 0, 150, 100);
-            yearTextField.setLocation(210, 300);
+            yearTextField.setBounds(0, 0, 150, 50);
+            yearTextField.setLocation(210, 220);
             yearTextField.setBackground(Color.decode(Colors.LIGHT_PINK));
             yearTextField.setBorder(null);
             yearTextField.setFont(new Font("Ariel", 1, 25));
@@ -110,15 +110,15 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
 
             monthLabel = new JLabel();
             monthLabel.setBounds(0, 0, 400, 200);
-            monthLabel.setLocation(420, 180);
+            monthLabel.setLocation(420, 100);
             monthLabel.setFont(new Font("Ariel", 1, 25));
             monthLabel.setForeground(Color.white);
             monthLabel.setText("Month");
             foregroundPanel.add(monthLabel);
 
             monthTextField = new JTextField();
-            monthTextField.setBounds(0, 0, 150, 100);
-            monthTextField.setLocation(370, 300);
+            monthTextField.setBounds(0, 0, 150, 50);
+            monthTextField.setLocation(370, 220);
             monthTextField.setBackground(Color.decode(Colors.LIGHT_PINK));
             monthTextField.setBorder(null);
             monthTextField.setFont(new Font("Ariel", 1, 25));
@@ -127,15 +127,15 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
 
             DayLabel = new JLabel();
             DayLabel.setBounds(0, 0, 400, 200);
-            DayLabel.setLocation(590, 180);
+            DayLabel.setLocation(590, 100);
             DayLabel.setFont(new Font("Ariel", 1, 25));
             DayLabel.setForeground(Color.white);
             DayLabel.setText("Day");
             foregroundPanel.add(DayLabel);
 
             dayTextField = new JTextField();
-            dayTextField.setBounds(0, 0, 150, 100);
-            dayTextField.setLocation(530, 300);
+            dayTextField.setBounds(0, 0, 150, 50);
+            dayTextField.setLocation(530, 220);
             dayTextField.setBackground(Color.decode(Colors.LIGHT_PINK));
             dayTextField.setBorder(null);
             dayTextField.setFont(new Font("Ariel", 1, 25));
@@ -144,7 +144,7 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
 
             timeLabel = new JLabel();
             timeLabel.setBounds(0, 0, 400, 200);
-            timeLabel.setLocation(50, 370);
+            timeLabel.setLocation(50, 270);
             timeLabel.setFont(new Font("Ariel", 1, 40));
             timeLabel.setForeground(Color.white);
             timeLabel.setText("Time");
@@ -152,15 +152,15 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
 
             hoursLabel = new JLabel();
             hoursLabel.setBounds(0, 0, 400, 200);
-            hoursLabel.setLocation(250, 330);
+            hoursLabel.setLocation(250, 230);
             hoursLabel.setFont(new Font("Ariel", 1, 25));
             hoursLabel.setForeground(Color.white);
             hoursLabel.setText("hour");
             foregroundPanel.add(hoursLabel);
 
             hoursTextField = new JTextField();
-            hoursTextField.setBounds(0, 0, 150, 100);
-            hoursTextField.setLocation(210, 450);
+            hoursTextField.setBounds(0, 0, 150, 50);
+            hoursTextField.setLocation(210, 350);
             hoursTextField.setBackground(Color.decode(Colors.LIGHT_PINK));
             hoursTextField.setBorder(null);
             hoursTextField.setFont(new Font("Ariel", 1, 25));
@@ -169,23 +169,23 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
 
             minutesLabel = new JLabel();
             minutesLabel.setBounds(0, 0, 400, 200);
-            minutesLabel.setLocation(400, 330);
+            minutesLabel.setLocation(400, 230);
             minutesLabel.setFont(new Font("Ariel", 1, 25));
             minutesLabel.setForeground(Color.white);
             minutesLabel.setText("minute");
             foregroundPanel.add(minutesLabel);
 
             minutesTextField = new JTextField();
-            minutesTextField.setBounds(0, 0, 150, 100);
-            minutesTextField.setLocation(370, 450);
+            minutesTextField.setBounds(0, 0, 150, 50);
+            minutesTextField.setLocation(370, 350);
             minutesTextField.setBackground(Color.decode(Colors.LIGHT_PINK));
             minutesTextField.setBorder(null);
             minutesTextField.setFont(new Font("Ariel", 1, 25));
             foregroundPanel.add(minutesTextField);
             minutesTextField.addMouseListener(this);
 
-            amButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 140, 100, xml.getImageLocation(2));
-            amButton.setBounds(530, 450, amButton.getPreferredSize().width, amButton.getPreferredSize().height);
+            amButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 100, 50, xml.getImageLocation(2));
+            amButton.setBounds(530, 350, amButton.getPreferredSize().width, amButton.getPreferredSize().height);
             foregroundPanel.add(amButton);
             amButton.addActionListener(new ActionListener() {
 
@@ -195,8 +195,8 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
                 }
             });
 
-            pmButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 140, 100, xml.getImageLocation(3));
-            pmButton.setBounds(680, 450, pmButton.getPreferredSize().width, pmButton.getPreferredSize().height);
+            pmButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 100, 50, xml.getImageLocation(3));
+            pmButton.setBounds(640, 350, pmButton.getPreferredSize().width, pmButton.getPreferredSize().height);
             foregroundPanel.add(pmButton);
             pmButton.addActionListener(new ActionListener() {
 
@@ -208,14 +208,14 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
 
             recordLabel = new JLabel();
             recordLabel.setBounds(0, 0, 400, 200);
-            recordLabel.setLocation(50, 540);
+            recordLabel.setLocation(50, 400);
             recordLabel.setFont(new Font("Ariel", 1, 40));
             recordLabel.setForeground(Color.white);
             recordLabel.setText("Task");
             foregroundPanel.add(recordLabel);
 
-            recordingButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 200, 140, xml.getImageLocation(4));
-            recordingButton.setBounds(210, 620, recordingButton.getPreferredSize().width, recordingButton.getPreferredSize().height);
+            recordingButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 150, 80, xml.getImageLocation(4));
+            recordingButton.setBounds(210, 480, recordingButton.getPreferredSize().width, recordingButton.getPreferredSize().height);
             recordingButton.addActionListener(new ActionListener() {
 
                 @Override
@@ -226,8 +226,8 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
 
             foregroundPanel.add(recordingButton);
 
-            saveButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 200, 140, xml.getImageLocation(5));
-            saveButton.setBounds(1130, 620, saveButton.getPreferredSize().width, saveButton.getPreferredSize().height);
+            saveButton = new Button("", Color.decode(Colors.PURPLE), Color.decode(Colors.LIGHT_PINK), 200, 150, xml.getImageLocation(5));
+            saveButton.setBounds(1150, 480, saveButton.getPreferredSize().width, saveButton.getPreferredSize().height);
             foregroundPanel.add(saveButton);
             saveButton.addActionListener(new ActionListener() {
 
@@ -273,7 +273,7 @@ public class SchedulerManagement extends JPanel implements MouseListener, Observ
         taskRecordingManagement trm = new taskRecordingManagement();
         trm.setLayout(new GridLayout(1, 1));
         trm.setBounds(0, 0, 650, 140);
-        trm.setLocation(430, 620);
+        trm.setLocation(370, 480);
         trm.setOpaque(false);
         foregroundPanel.add(trm);
         trm.setVisible(true);

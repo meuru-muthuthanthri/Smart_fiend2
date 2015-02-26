@@ -22,10 +22,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import smartfriend.GraphicRenderer;
 import smartfriend.applications.userprofile.UserDetails;
+import smartfriend.gui.Button;
 import smartfriend.tts.VoiceGenerator;
 import smartfriend.util.email.dto.EmailDTO;
 import smartfriend.util.email.emailmanagement.EmailEngine;
+import smartfriend.util.general.Colors;
 import smartfriend.util.general.Consts;
 import smartfriend.util.general.ImageXMLParser;
 import smartfriend.util.general.MainConfiguration;
@@ -44,6 +47,7 @@ public class NumberAppEndPanel extends JPanel {
     private JButton sendButton, closeButton;
     private final VoiceGenerator talk;
     private NumberLearningDTO numberLearningDTO;
+    private Button sendMailButton;
 
     public NumberAppEndPanel() {
 
@@ -92,7 +96,7 @@ public class NumberAppEndPanel extends JPanel {
             });
             timer2.setRepeats(false); // Only execute once
             timer2.start();
-
+            
             sendEmailLabel = new JLabel();
             sendEmailLabel.setBounds(0, 0, 1500, 500);
             sendEmailLabel.setLocation(440, 360);
@@ -101,34 +105,34 @@ public class NumberAppEndPanel extends JPanel {
             sendEmailLabel.setForeground(Color.PINK);
             foregroundPanel.add(sendEmailLabel);
 
-            sendButton = new JButton();
-            foregroundPanel.add(sendButton);
-            sendButton.setSize(130, 130);
-            sendButton.setLocation(640, 640);
-            sendButton.setOpaque(false);
-            sendButton.setContentAreaFilled(false);
-            sendButton.setFocusPainted(false);
-            sendButton.setBorderPainted(false);
-            sendButton.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(xml.getImageLocation(39))));
-            sendButton.addActionListener(new ActionListener() {
+            sendMailButton = new Button("", Color.decode(Colors.WHITE), Color.decode(Colors.LIGHT_PINK), 150, 150, xml.getImageLocation(39));
+            sendMailButton.setBounds(640, 620, sendMailButton.getPreferredSize().width, sendMailButton.getPreferredSize().height);
+            sendMailButton.addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
                     sendButtonActionPerformed(ae);
                 }
             });
+            foregroundPanel.add(sendMailButton);
 
             closeButton = new JButton();
             foregroundPanel.add(closeButton);
-            sendButton.setSize(130, 130);
             closeButton.setBounds(0, 0, 500, 500);
-            closeButton.setLocation(1000, 400);
+            closeButton.setLocation(1052, -190);
             closeButton.setOpaque(false);
             closeButton.setContentAreaFilled(false);
             closeButton.setFocusPainted(false);
             closeButton.setBorderPainted(false);
             closeButton.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(xml.getImageLocation(40))));
+            closeButton.addActionListener(new ActionListener() {
 
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    GraphicRenderer.getInstance().closeScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
+                }
+            });
+            
             foregroundPanel.setOpaque(false);
             // create wrapper JPanel
             JPanel backgroundPanel = new JPanel(new GridBagLayout());

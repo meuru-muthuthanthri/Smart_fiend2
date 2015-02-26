@@ -137,6 +137,7 @@ public class GraphicRenderer implements Runnable {
 
     public void closeScreen() {
         panelContainer.remove(currentApplication);
+//        currentApplication = null;
     }
 
     private JFrame setUpInfoPanel() {

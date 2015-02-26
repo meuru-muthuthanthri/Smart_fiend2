@@ -85,36 +85,33 @@ public class BookReaderGUI extends JPanel implements ActionListener {
         BufferedImage resizedImage = resize(image, screenWidth, screenHeight);
 
         // initialize buttons 
-       backgroundImage = new JLabel(new ImageIcon(resizedImage));
+        backgroundImage = new JLabel(new ImageIcon(resizedImage));
 
-        exitButton = new Button("Exit", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 200, 200, Consts.NUMBER_ICON);;
-        startReading = new Button("Start", Color.decode(Colors.DULL_GREEN), Color.decode(Colors.DULL_PINK), 200, 200, Consts.NUMBER_ICON);
-        getMeaning = new Button("Meaning", Color.decode(Colors.DULL_ORANGE), Color.decode(Colors.DULL_PINK), 200, 200, Consts.NUMBER_ICON);
+        exitButton = new Button("Exit", Color.decode(Colors.RED), Color.decode(Colors.DULL_PINK), 200, 200, Consts.NUMBER_ICON);
+        startReading = new Button("Start", Color.decode(Colors.DULL_GREEN), Color.decode(Colors.DULL_PINK), 200, 200, currentDicPath+"/resources/images/bookreader/bookIcons/start.png");
+        getMeaning = new Button("Meaning", Color.decode(Colors.DULL_ORANGE), Color.decode(Colors.DULL_PINK), 200, 200, currentDicPath+"/resources/images/bookreader/bookIcons/meaning.png");
 
         // remove the layout from the panel
         this.setLayout(null);
         backgroundImage.setBounds(0, 0, screenWidth, screenHeight);
 
         exitButton.setText("Exit");
-//        exitButton.setBackground(Color.green);
         exitButton.setBounds(100, 100, exitButton.getPreferredSize().width, exitButton.getPreferredSize().height);
         exitButton.addActionListener(this);
 
         startReading.setText("Start");
-//        startReading.setBackground(Color.green);
         startReading.setBounds(900, 100, 200, 200);
         startReading.addActionListener(this);
 
         getMeaning.setText("Meaning");
-//        getMeaning.setBackground(Color.green);
         getMeaning.setBounds(100, 400, 200, 200);
         getMeaning.addActionListener(this);
         getMeaning.setVisible(false);
 
         this.add(exitButton);
-        this.add(startReading,1);
-        this.add(getMeaning,2);
-       this.add(backgroundImage,3);
+        this.add(startReading, 1);
+        this.add(getMeaning, 2);
+        this.add(backgroundImage, 3);
     }
 
     public static synchronized BookReaderGUI getInstance() {
@@ -126,6 +123,12 @@ public class BookReaderGUI extends JPanel implements ActionListener {
             }
         }
         return instance;
+    }
+    
+    public void removeBookreader()
+    {
+        if(instance!=null)
+            instance=null;
     }
 
     public static BufferedImage resize(BufferedImage image, int width, int height) {
@@ -203,7 +206,6 @@ public class BookReaderGUI extends JPanel implements ActionListener {
                     if (currentWord == null) {
                         throw new Exception("noWord");
                     }
-                    
 
                     panel = new JPanel();
 
@@ -260,7 +262,7 @@ public class BookReaderGUI extends JPanel implements ActionListener {
 
                 }
                 break;
-                     case "Close":
+            case "Close":
                 System.out.print("Close pressed!");
                 if (agent.isShowing()) {
                     agent.removeAgent();
@@ -272,8 +274,13 @@ public class BookReaderGUI extends JPanel implements ActionListener {
                 this.revalidate();
                 this.repaint();
                 bkReader.setRun(true);
-               break;
-                        
+                break;
+            case "Exit":
+                System.out.println("exit");
+                this.removeBookreader();
+                      
+                break;
+
         }
     }
 

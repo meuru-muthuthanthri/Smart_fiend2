@@ -41,6 +41,18 @@ public class Test {
             f.add(bookGui);
             
             f.setVisible(true);
+            Thread.sleep(10000);
+            bookGui.hide();
+            BookReaderGUI.getInstance().removeBookreader();
+            f.revalidate();
+            f.repaint();
+            Thread.sleep(10000);
+            JPanel bookGui1 = BookReaderGUI.getInstance();
+            bookGui1.setVisible(true);
+            f.add(bookGui1);
+              f.revalidate();
+            f.repaint();
+            
 //            SpeechRecognizer sp= SpeechRecognizer.getSpeechInstance();
 //            new Thread(sp).start();
 //            BookReader rd = new BookReader();

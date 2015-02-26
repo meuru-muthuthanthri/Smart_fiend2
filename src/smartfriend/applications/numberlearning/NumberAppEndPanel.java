@@ -129,7 +129,7 @@ public class NumberAppEndPanel extends JPanel {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    GraphicRenderer.getInstance().closeScreen(Consts.NUMBERAPP, Consts.MAIN_SCREEN);
+                    GraphicRenderer.getInstance().closeScreen();
                 }
             });
             

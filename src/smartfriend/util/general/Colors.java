@@ -9,6 +9,7 @@ package smartfriend.util.general;
  * @author Meuru
  */
 public final class Colors {
+
     public static final String LIGHT_GREEN = "#68c212";
     public static final String LIGHT_BLUE = "#00b2e0";
     public static final String DULL_YELLOW = "#d8b501";
@@ -24,5 +25,6 @@ public final class Colors {
     public static final String GREY = "#C0C0C0";
     public static final String WHITE = "#FFFFFF";
     public static final String PURPLE = "#8e7cc3";
-     public static final String DARK_PURPLE = "#9900ff";
+    public static final String DARK_PURPLE = "#9900ff";
+    public static final String GREEN = "#41DF02";
 }

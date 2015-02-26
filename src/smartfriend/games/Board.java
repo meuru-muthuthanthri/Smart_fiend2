@@ -44,24 +44,24 @@ public class Board extends JPanel implements Commons {
         pt = new Point();
         
         addKeyListener(new TAdapter());
-        addMouseMotionListener(new MouseMotionListener() {
-            
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                
-            }
-            
-            @Override
-            public void mouseMoved(MouseEvent e) {
-//                System.out.println("@@@" + e.getX() + "  " + e.getY());
-                if (pt.x < e.getX()) {
-                    paddle.movePaddle(3);
-                } else {
-                    paddle.movePaddle(-3);
-                }                
-                pt = new Point(e.getX(), e.getY());
-            }
-        });
+//        addMouseMotionListener(new MouseMotionListener() {
+//            
+//            @Override
+//            public void mouseDragged(MouseEvent e) {
+//                
+//            }
+//            
+//            @Override
+//            public void mouseMoved(MouseEvent e) {
+////                System.out.println("@@@" + e.getX() + "  " + e.getY());
+//                if (pt.x < e.getX()) {
+//                    paddle.movePaddle(3);
+//                } else {
+//                    paddle.movePaddle(-3);
+//                }                
+//                pt = new Point(e.getX(), e.getY());
+//            }
+//        });
         setFocusable(true);
         
         bricks = new Brick[30];
@@ -69,6 +69,18 @@ public class Board extends JPanel implements Commons {
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 10);
         gameInit();
+    }
+    
+    public void paddleLeft(){
+        paddle.movePaddle(-2);
+    }
+    
+    public void paddleStop(){
+        paddle.movePaddle(0);
+    }
+    
+    public void paddleRight(){
+        paddle.movePaddle(2);
     }
     
     public void addNotify() {

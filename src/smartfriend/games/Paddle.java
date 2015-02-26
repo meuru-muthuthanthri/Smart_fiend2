@@ -56,9 +56,7 @@ public class Paddle extends Sprite implements Commons {
     }
 
     public void movePaddle(int direction) {
-
         dx = direction;
-
     }
 
     public void keyReleased(KeyEvent e) {

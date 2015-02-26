@@ -17,7 +17,7 @@ public final class Consts {
 //    public static final int SCREEN_WIDHT = 1280;
 //    public static final int SCREEN_HEIGHT = 1024;
     //Hand Gesture Recognition Constants
-    public static final int CAMERA_ID = 0;
+    public static final int CAMERA_ID = 1;
     public static final int CAMERA_ID_BOOKREADER = 2;
     public static final int CAMERA_WIDTH = 640;
     public static final int CAMERA_HEIGHT = 480;
@@ -28,6 +28,7 @@ public final class Consts {
     public static final String WELCOME_IMAGE = IMAGE_SOURCE_DIRECTORY + "welcome.jpg";
     public static final String MAIN_IMAGE = IMAGE_SOURCE_DIRECTORY + "main.jpg";
     public static final String WRITE_APP_IMAGE = IMAGE_SOURCE_DIRECTORY + "writeApp.jpg";
+    public static final String BRICK_GAME_IMAGE = IMAGE_SOURCE_DIRECTORY + "brick_game.png";
     public static final String KITE_IMAGE = IMAGE_SOURCE_DIRECTORY + "kite.png";
     public static final String ENTER_ICON = IMAGE_SOURCE_DIRECTORY + "enter_icon.png";
     public static final String EXIT_ICON = IMAGE_SOURCE_DIRECTORY + "exit_icon.png";
@@ -36,9 +37,17 @@ public final class Consts {
     public static final String INTERACTIVE_BOOK_ICON = IMAGE_SOURCE_DIRECTORY + "interactiveBook_icon.png";
     public static final String SCEDULAR_ICON = IMAGE_SOURCE_DIRECTORY + "scheduler_icon.png";
     public static final String PROFILE_ICON = IMAGE_SOURCE_DIRECTORY + "profile_icon.png";
-    public static final String PALM_BACKGROUND_IMAGE = IMAGE_SOURCE_DIRECTORY + "palm_background.jpg"; 
+
+    public static final String PALM_BACKGROUND_IMAGE = IMAGE_SOURCE_DIRECTORY + "palm_background.jpg";
     public static final String PALM_SCANNER_IMAGE = IMAGE_SOURCE_DIRECTORY + "palm_scanner.jpg";
-    
+
+    public static final String BACK_ICON = IMAGE_SOURCE_DIRECTORY + "back_icon.png";
+    public static final String PLAY_ICON = IMAGE_SOURCE_DIRECTORY + "play_icon.png";
+    public static final String LEFT_ICON = IMAGE_SOURCE_DIRECTORY + "left_icon.png";
+    public static final String RIGHT_ICON = IMAGE_SOURCE_DIRECTORY + "right_icon.png";
+    public static final String GAME_ICON = IMAGE_SOURCE_DIRECTORY + "game_icon.png";
+    public static final String MEANING_ICON = IMAGE_SOURCE_DIRECTORY + "meaning_icon.png";
+
     //sounds
     public static final String MOUSEOVER_SOUND = "resources\\music\\mouse1.wav";
     public static boolean saveImage = false;
@@ -47,9 +56,9 @@ public final class Consts {
     public static boolean SAVE_IMAGE_INTERACTIVE_BOOK = true;
     public static boolean TALK = true;
     public static boolean WITHOUT_SEGMENTATION = true;
-    
+
     //applications
-    public static final String WRITE_APP = "WriteApp";
+    public static final String BOARD_GAME = "BoardGame";
     public static final String MAIN_SCREEN = "MainScreen";
     public static final String INTERACTIVE_BOOK = "InteractiveBook";
     public static final String NUMBERAPP = "NumberApp";

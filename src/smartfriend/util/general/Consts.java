@@ -36,7 +36,8 @@ public final class Consts {
     public static final String INTERACTIVE_BOOK_ICON = IMAGE_SOURCE_DIRECTORY + "interactiveBook_icon.png";
     public static final String SCEDULAR_ICON = IMAGE_SOURCE_DIRECTORY + "scheduler_icon.png";
     public static final String PROFILE_ICON = IMAGE_SOURCE_DIRECTORY + "profile_icon.png";
-    
+    public static final String PALM_BACKGROUND_IMAGE = IMAGE_SOURCE_DIRECTORY + "palm_background.jpg"; 
+    public static final String PALM_SCANNER_IMAGE = IMAGE_SOURCE_DIRECTORY + "palm_scanner.jpg";
     
     //sounds
     public static final String MOUSEOVER_SOUND = "resources\\music\\mouse1.wav";
@@ -54,4 +55,5 @@ public final class Consts {
     public static final String NUMBERAPP = "NumberApp";
     public static final String SCHEDULER = "Scheduler";
     public static final String USER_PROFILES = "User Profiles";
+    public static final String PALM_RECOGNIZER = "Palm Reader";
 }

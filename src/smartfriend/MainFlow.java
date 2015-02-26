@@ -91,13 +91,15 @@ public class MainFlow implements Runnable {
             //graphicRenderer.drawImageOnInfoPanel(screenImage, 1);
             handpointer = handDetector.getHandPoint(camera.captureSmallPhoto(), screenImage);
             graphicRenderer.drawPointerOnScreen(handpointer);
+
 //            systemController.moveMousePointer(handpointer);
             if (handpointer.getState()) {
-//                systemController.leftMouseClick(handpointer);
+                // systemController.leftMouseClick(handpointer);
             }
-
         }
     }
+
+    
 
     private SpeechRecognizer startVoiceRecognition() {
         SpeechRecognizer sp = SpeechRecognizer.getSpeechInstance();

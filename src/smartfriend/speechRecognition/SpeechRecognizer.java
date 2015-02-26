@@ -75,7 +75,7 @@ public class SpeechRecognizer extends Observable implements Runnable {
         return command;
     }
 
-    public void recognizeSpeech() {
+    public void recognizeSpeech() throws InterruptedException {
 
         //speech recording
         try {
@@ -128,6 +128,7 @@ public class SpeechRecognizer extends Observable implements Runnable {
 //                setSpeechCommand("play video");
                 setChanged();        
                 notifyObservers(getSpeechCommand(command));
+                Thread.sleep(100);
             }
             System.out.println("stop recording....");
             recognizer.stopRecognition();
@@ -138,10 +139,14 @@ public class SpeechRecognizer extends Observable implements Runnable {
 
     @Override
     public void run() {
-        while(true){
+        
+        try {
             System.out.println("running speech");
             recognizeSpeech();     
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SpeechRecognizer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
    

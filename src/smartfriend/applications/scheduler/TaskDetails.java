@@ -1,6 +1,5 @@
 package smartfriend.applications.scheduler;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -11,7 +10,6 @@ public class TaskDetails implements Comparable<TaskDetails> {
 
     private Date taskDate;
     private String taskDateStr;
-    private int repeatCount;
     private int waveNumber;
 
     TaskDetails() {
@@ -32,14 +30,6 @@ public class TaskDetails implements Comparable<TaskDetails> {
 
     public void setTaskDateStr(String taskDateStr) {
         this.taskDateStr = taskDateStr;
-    }
-
-    public int getRepeatCount() {
-        return repeatCount;
-    }
-
-    public void setRepeatCount(int repeatCount) {
-        this.repeatCount = repeatCount;
     }
 
     public int getWaveNumber() {

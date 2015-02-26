@@ -186,8 +186,8 @@ public class UserDetailManagement extends JPanel implements MouseListener, Obser
             comLabel.setText(".com");
             foregroundPanel.add(comLabel);
 
-            saveButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 250, 150, xml.getImageLocation(11));
-            saveButton.setBounds(50, 580, saveButton.getPreferredSize().width, saveButton.getPreferredSize().height);
+            saveButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 150, 100, xml.getImageLocation(11));
+            saveButton.setBounds(50, 550, saveButton.getPreferredSize().width, saveButton.getPreferredSize().height);
             saveButton.addActionListener(new ActionListener() {
 
                 @Override
@@ -197,7 +197,7 @@ public class UserDetailManagement extends JPanel implements MouseListener, Obser
             });
             foregroundPanel.add(saveButton);
 
-            closeButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 150, 150, xml.getImageLocation(12));
+            closeButton = new Button("", Color.decode(Colors.LIGHT_PINK), Color.decode(Colors.LIGHT_PINK), 150, 150, xml.getImageLocation(15));
             closeButton.setBounds(1210, 0, closeButton.getPreferredSize().width, closeButton.getPreferredSize().height);
             closeButton.addActionListener(new ActionListener() {
 
@@ -238,7 +238,7 @@ public class UserDetailManagement extends JPanel implements MouseListener, Obser
         try {
 
             userName = nameTextField.getText();
-            emailAddress = emailTextField.getText();
+            emailAddress = emailTextField.getText()+".com";
             yearSelected = yearTextField.getText();
             monthSelected = monthTextField.getText();
             daySelected = dayTextField.getText();

@@ -64,6 +64,9 @@ public class KeyBoardPanel extends JPanel {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
+////                    System.out.println("ssad"+t.getCaretPosition());
+//                    t.setCaretPosition(1);
+                    
                 }
             });
             keyBoardPanel.add(nextButton);

@@ -34,9 +34,10 @@ public class Scheduler implements Runnable {
     @Override
     public void run() {
 
+        //read the scheduler details file
+        readSchedulerDetailFile();
+
         while (true) {
-            //read the scheduler details file
-            readSchedulerDetailFile();
 
             if (!taskDetailList.isEmpty()) {
                 System.out.println("not empty");
@@ -45,6 +46,8 @@ public class Scheduler implements Runnable {
                 try {
                     System.out.println("sleeping");
                     Thread.sleep(1 * 60 * 60 * 1000);
+                    //read the scheduler details file
+                    readSchedulerDetailFile();
 
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Scheduler.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,21 +66,16 @@ public class Scheduler implements Runnable {
         if (DateUtils.truncatedEquals(currentTime, taskDetails.getTaskDate(), Calendar.MINUTE)) {
 
             System.out.println("have a task in this minitue");
+            System.out.println(taskDetails.getTaskDate());
             playSound(taskDetails);
-            if (taskDetails.getRepeatCount() > 0) {
-                taskDetails.setRepeatCount(taskDetails.getRepeatCount() - 1);
-                System.out.println("repeat------"+taskDetails.getRepeatCount());
-                taskDetails.setTaskDate(DateUtils.addMinutes(taskDetails.getTaskDate(), 15));
-                taskDetailList.add(taskDetails);
-                Collections.sort(taskDetailList);
-            }
+
         } else {
             long millisTillNextTask = taskDetails.getTaskDate().getTime() - currentTime.getTime();
             taskDetailList.add(taskDetails);
             Collections.sort(taskDetailList);
             System.out.println("sleeping for" + millisTillNextTask);
             try {
-                Thread.sleep(millisTillNextTask);
+                Thread.sleep(Math.abs(millisTillNextTask));
             } catch (InterruptedException ex) {
                 Logger.getLogger(Scheduler.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -86,7 +84,7 @@ public class Scheduler implements Runnable {
 
     //play the recorded task
     public void playSound(TaskDetails taskDetails) {
-        
+
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("recordingFilePath") + taskDetails.getWaveNumber() + ".wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
@@ -109,7 +107,6 @@ public class Scheduler implements Runnable {
         int day;
         int hours;
         int minutes;
-        int repeatCount;
         String ampm;
 
         BufferedReader bufferedReader;
@@ -128,8 +125,7 @@ public class Scheduler implements Runnable {
                 day = Integer.parseInt(words[3].trim());
                 hours = Integer.parseInt(words[4].trim());
                 minutes = Integer.parseInt(words[5].trim());
-                repeatCount = Integer.parseInt(words[6].trim());
-                ampm = words[7].trim();
+                ampm = words[6].trim();
 
                 String dateStr = day + "-" + month + "-" + year + " " + hours + ":" + minutes + " " + ampm;
 
@@ -155,7 +151,6 @@ public class Scheduler implements Runnable {
                             TaskDetails taskDetails = new TaskDetails();
                             taskDetails.setTaskDate(taskDate);
                             taskDetails.setTaskDateStr(dateStr);
-                            taskDetails.setRepeatCount(repeatCount);
                             taskDetails.setWaveNumber(waveNumber);
                             taskDetailList.add(taskDetails);
                             Collections.sort(taskDetailList);
@@ -164,7 +159,6 @@ public class Scheduler implements Runnable {
                         TaskDetails taskDetails = new TaskDetails();
                         taskDetails.setTaskDate(taskDate);
                         taskDetails.setTaskDateStr(dateStr);
-                        taskDetails.setRepeatCount(repeatCount);
                         taskDetails.setWaveNumber(waveNumber);
                         taskDetailList.add(taskDetails);
                         Collections.sort(taskDetailList);

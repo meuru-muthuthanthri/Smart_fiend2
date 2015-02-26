@@ -33,6 +33,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import smartfriend.GraphicRenderer;
 import smartfriend.gui.Button;
 import smartfriend.gui.TalkingAgent;
 import smartfriend.util.general.Colors;
@@ -277,7 +278,8 @@ public class BookReaderGUI extends JPanel implements ActionListener {
                 bkReader.setRun(true);
                 break;
             case "Exit":
-                System.out.println("exit");
+                System.out.println("exit interactive book");
+                GraphicRenderer.getInstance().closeScreen();
                 this.removeBookreader();
                       
                 break;

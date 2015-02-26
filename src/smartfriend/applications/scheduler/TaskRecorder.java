@@ -10,6 +10,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.TargetDataLine;
+import smartfriend.speechRecognition.SpeechRecognizer;
 import smartfriend.util.general.MainConfiguration;
 
 /**
@@ -82,6 +83,7 @@ public class TaskRecorder {
                         new AudioInputStream(targetDataLine),
                         fileType,
                         audioFile);
+                System.out.println("@@@@@@@@@@@@@ " + audioFile);
             } catch (Exception e) {
                 e.printStackTrace();
             }

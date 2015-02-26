@@ -34,6 +34,7 @@ import javax.swing.Timer;
 import smartfriend.GraphicRenderer;
 import smartfriend.applications.userprofile.UserDetails;
 import smartfriend.gui.Button;
+import smartfriend.speechRecognition.SpeechRecognizer;
 import smartfriend.tts.VoiceGenerator;
 import smartfriend.util.general.Colors;
 import smartfriend.util.general.Consts;
@@ -297,6 +298,7 @@ public class NumberApp extends JPanel implements Observer {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
+                    SpeechRecognizer.getSpeechInstance().stopRecognition();
                     GraphicRenderer.getInstance().closeScreen();
                 }
             });

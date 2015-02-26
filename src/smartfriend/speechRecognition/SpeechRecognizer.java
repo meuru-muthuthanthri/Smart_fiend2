@@ -17,24 +17,25 @@ public class SpeechRecognizer extends Observable implements Runnable {
     private String command;
 //    private String correctCommand;
     private final Configuration configuration;
-    private static SpeechRecognizer instance=null;
+    private static SpeechRecognizer instance = null;
+    LiveSpeechRecognizer recognizer;
+    private boolean active;
 
     private SpeechRecognizer() {
 //        try {
-            configuration = new Configuration();
-            configuration.setAcousticModelPath(SpeechConfiguration.getAcousticModel());
-            configuration.setDictionaryPath(SpeechConfiguration.getDIctionary());
-            configuration.setLanguageModelPath(SpeechConfiguration.getLanguageModel());
-            
-            
+        configuration = new Configuration();
+        configuration.setAcousticModelPath(SpeechConfiguration.getAcousticModel());
+        configuration.setDictionaryPath(SpeechConfiguration.getDIctionary());
+        configuration.setLanguageModelPath(SpeechConfiguration.getLanguageModel());
+
 //        } catch (IOException ex) {
 //            Logger.getLogger(SpeechRecognizer.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }
-    
-    public static synchronized SpeechRecognizer getSpeechInstance(){
-        if(instance ==null){
-            instance= new SpeechRecognizer();
+
+    public static synchronized SpeechRecognizer getSpeechInstance() {
+        if (instance == null) {
+            instance = new SpeechRecognizer();
         }
         return instance;
     }
@@ -50,14 +51,14 @@ public class SpeechRecognizer extends Observable implements Runnable {
 
     public String getSpeechCommand(String command) {
 
-        if(command.contains("next")){
+        if (command.contains("next")) {
             command = "next";
         }
-        
-        if(command.contains("yes")){
+
+        if (command.contains("yes")) {
             command = "yes";
         }
-        
+
         if (command.contains("story") || command.contains("book")) {
             System.out.println("story book command");
             command = "story book";
@@ -71,7 +72,7 @@ public class SpeechRecognizer extends Observable implements Runnable {
         if (command.contains("play") || command.contains("video")) {
             System.out.println("play video command");
             command = "play video";
-        }     
+        }
         return command;
     }
 
@@ -112,42 +113,48 @@ public class SpeechRecognizer extends Observable implements Runnable {
 //            configuration.setAcousticModelPath("file:/" + MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("acousticModelPath2"));
 //            configuration.setDictionaryPath("file:/" + MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("dictionaryPath2"));
 //            configuration.setLanguageModelPath("file:/" + MainConfiguration.getCurrentDirectory() + MainConfiguration.getInstance().getProperty("languageModelPath2"));
-            LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(configuration);
+            recognizer = new LiveSpeechRecognizer(configuration);
             recognizer.startRecognition(true);
 
             SpeechResult result;
             System.out.println("start recording......");
 
-            while ((result = recognizer.getResult()) != null) {
+            while ((result = recognizer.getResult()) != null & active) {
                 System.out.println("start");
                 System.out.println(result.getHypothesis());
                 setSpeechCommand(result.getHypothesis());
                 setSpeechCommand(getSpeechCommand(getWord()));
-                
-                /*********************/
+
+                /**
+                 * ******************
+                 */
 //                setSpeechCommand("play video");
-                setChanged();        
+                setChanged();
                 notifyObservers(getSpeechCommand(command));
                 Thread.sleep(100);
             }
             System.out.println("stop recording....");
             recognizer.stopRecognition();
-    }   catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(SpeechRecognizer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public void run() {
-        
+        active = true;
+
         try {
             System.out.println("running speech");
-            recognizeSpeech();     
+            recognizeSpeech();
         } catch (InterruptedException ex) {
             Logger.getLogger(SpeechRecognizer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-   
+
+    public void stopRecognition() {
+        active = false;
+    }
+
 }

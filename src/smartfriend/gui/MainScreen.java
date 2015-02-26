@@ -57,6 +57,7 @@ public class MainScreen extends JPanel implements Runnable {
                 VoiceGenerator.getVoiceGeneratorInstance().voiceOutput("You are using numbers application");
                 graphicRenderer.showScreen(Consts.NUMBERAPP);
                 SpeechRecognizer.getSpeechInstance().addObserver((Observer) graphicRenderer.getCurrentApplication());
+                new Thread(SpeechRecognizer.getSpeechInstance()).start();
                 
             }
         });

@@ -65,9 +65,9 @@ public class MainFlow implements Runnable {
         systemController = new SystemController(gUIForm.getGraphicsDevice(), displayEngine.getBoundryPoints());
 
         voice = VoiceGenerator.getVoiceGeneratorInstance();
-        sp = startVoiceRecognition();
-//        scheduler = new Scheduler();
-//        new Thread(scheduler).start();
+//        sp = startVoiceRecognition();
+        scheduler = new Scheduler();
+        new Thread(scheduler).start();
 
         new Thread(this).start();
     }
@@ -92,9 +92,9 @@ public class MainFlow implements Runnable {
             handpointer = handDetector.getHandPoint(camera.captureSmallPhoto(), screenImage);
             graphicRenderer.drawPointerOnScreen(handpointer);
 
-//            systemController.moveMousePointer(handpointer);
+            systemController.moveMousePointer(handpointer);
             if (handpointer.getState()) {
-                // systemController.leftMouseClick(handpointer);
+                 systemController.leftMouseClick(handpointer);
             }
         }
     }

@@ -12,7 +12,7 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @author user
+ * @author Nilaksha
  */
 public class ImageXMLParser {
 
